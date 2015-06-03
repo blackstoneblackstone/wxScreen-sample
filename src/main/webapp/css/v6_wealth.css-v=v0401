@@ -1,0 +1,37 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕年会版
+ *Date       ：2013.12.27
+ *Author     ：lij
+**/
+#wrap{ background:#e74145 url(../images/v6_wealth/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li{ border:1px solid #e74145; background:#fff; border-radius:0;}
+.head{ border-radius:50%; overflow:hidden;}
+.elem{ position:absolute; top:-25px; left:-25px; width:107px; height:76px; background:url(../images/v6_wealth/hat.gif) 0 0 no-repeat;}
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#ed2947; margin-left:5px;}
+
+.und-btn a,.btn-color,.btn-start{ border:1px solid #ffd52c; border-radius:4px; background:-moz-linear-gradient(top , #fff76d, #ffcf1e); background: -webkit-linear-gradient(top , #fff76d, #ffcf1e); background:-o-linear-gradient(top , #fff76d, #ffcf1e); color:#ed2947;}
+.btn-rock a{ color:#ed2947;}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ border:1px solid #ffd52c; background:-moz-linear-gradient(top , #fef785, #ffd332); background:-webkit-linear-gradient(top , #fef785, #ffd332);background:-o-linear-gradient(top , #fef785, #ffd332); box-shadow:0 0 5px rgba(255,255,153,1);}
+
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:0 0 10px rgba(245,188,110,1);/* background:rgba(12,39,69,.8);*/ /*border:1px solid #f0c8c9;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:#e74145; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #e64646 ,#a43642); background:-moz-linear-gradient(top , #e64646 ,#a43642); background:-o-linear-gradient(top , #e64646 ,#a43642); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+/*.lottery-box{ box-shadow:none; background:none; border:none;}*/
+.box-ltop,.rock-name{ color:#fff;}
+.pair-wt,.lott-wt{ text-shadow:none;}
+
+/*-------详情显示------*/
+.detail-box{ border:1px solid #e74145;}
+.detail-bar{  border:none; background:#fff; border-radius:0;}
+.detail-top{ border-bottom:1px solid #ee7a7c;}
+
+/*--字体颜色--*/
+.tips2,.user-name-detail,.detail-bar,.cont-box,.user-name,.cont-box a{ color:#bf191d;}

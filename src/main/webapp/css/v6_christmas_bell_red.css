@@ -1,0 +1,35 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕圣诞铃铛版-喜庆
+ *Date       ：2013.12.19
+ *Author     ：lij
+**/
+#wrap{ background:#030b22 url(../images/v6_christmas_bell_red/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li{ border:1px solid #f0c8c9; background:white/*rgba(255,255,255,.8)*/; border-radius:0;}
+.head{ border-radius:50%; overflow:hidden;}
+.elem{ position:absolute; top:-21px; left:-27px; width:84px; height:46px; background:url(../images/v6_christmas_bell_red/chr_hat.png) 0 0 no-repeat;}
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#fff; margin-left:5px;}
+/*{ border-color:#286592c #082e4f #06142c #286592; background:-moz-linear-gradient(top , #db3434, #a61d1d); background:-webkit-linear-gradient(top , #db3434, #a61d1d);background:-o-linear-gradient(top , #db3434, #a61d1d);}*/
+
+.und-btn a,.btn-color,.btn-start{border:1px solid #4b9de1; border-color:#c51313 #ad0202 #901010 #ad0202; box-shadow:inset 1px 1px 1px rgba(234,182,182,1); border-radius:4px; background:-moz-linear-gradient(top , #d70202, #9e0404); background: -webkit-linear-gradient(top , #d70202, #9e0404); background:-o-linear-gradient(top , #d70202, #9e0404);}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ background:-moz-linear-gradient(top , #db3434, #a61d1d); background:-webkit-linear-gradient(top , #db3434, #a61d1d);background:-o-linear-gradient(top , #db3434, #a61d1d);}
+
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:none;/* background:rgba(12,39,69,.8);*/ /*border:1px solid #f0c8c9;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #b40101 ,#9b0101); background:-moz-linear-gradient(top , #b40101 ,#9b0101); background:-o-linear-gradient(top , #b40101 ,#9b0101); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+
+
+/*-------详情显示------*/
+.detail-box{ border:1px solid #f0c8c9;}
+.detail-bar{  border:none; background:white/*rgba(255,255,255,.8)*/; border-radius:0;}
+.detail-top{ border-bottom:1px solid #8cafc9;}
+
+/*--字体颜色--*/
+.tips2,.user-name-detail,.detail-bar,.cont-box,.user-name,.cont-box a{ color:#bf191d;}

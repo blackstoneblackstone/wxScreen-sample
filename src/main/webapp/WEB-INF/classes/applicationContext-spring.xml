@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	http://www.springframework.org/schema/jdbc
+	http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
+	<!-- - - - - - 扫描业务层包，支持织入DAO - - - - - -->
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 这里支持多种寻址方式：classpath和file -->
+                <value>classpath:config.properties</value>
+                <!-- 推荐使用file的方式引入，这样可以将配置和代码分离 -->
+            </list>
+        </property>
+    </bean>
+	<!-- - - - - - - - Apache 连接池 - - - - - - - -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="username" value="${db.name}" />
+		<property name="password" value="${db.pwd}" />
+		<property name="url"
+			value="jdbc:mysql://${db.ip}:${db.port}/${db.database}?useUnicode=true&amp;characterEncoding=utf8" />
+		<!-- 连接池启动时创建的初始化连接数量（不设定即为0） -->
+		<property name="initialSize">
+			<value>100</value>
+		</property>
+		<!-- 连接池中可同时连接的最大的连接数（默认值为8) -->
+		<property name="maxActive">
+			<value>200</value>
+		</property>
+		<!-- 连接池中最小的空闲的连接数，低于这个数量会被创建新的连接 -->
+		<property name="minIdle">
+			<value>50</value>
+		</property>
+		<!-- 连接池中最大的空闲的连接数，超过的空闲连接将被释放 -->
+		<property name="maxIdle">
+			<value>50</value>
+		</property>
+		<!-- 最大等待时间，当没有可用连接时，连接池等待连接释放的最大时间，超过该时间限制会抛出异常 -->
+		<property name="maxWait">
+			<value>10000</value>
+		</property>
+		<!-- removeAbandoned属性说明 -->
+		<!-- 超过removeAbandonedTimeout时间后，是否进 行没用连接（废弃）的回收（默认为false) -->
+		<!-- 举例当maxActive=20, 活动连接为18,空闲连接为1时可以触发"removeAbandoned".但是活动连接只有在没有被使用的时间超
+			过"removeAbandonedTimeout(这里默认为300秒)"时才被回收 -->
+		<!-- 遇到数据库死锁。以前遇到过后端存储过程做了锁表操作，导致前台集群中连接池全都被block住，后续的业务处理因为拿不到链接所有都处理失败了。 -->
+		<property name="removeAbandoned">
+			<value>true</value>
+		</property>
+	</bean>
+
+
+	<!-- - - - - - - spring 声明式事务 - - - - - - - -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- - - - - - - spring 事务属性 - - - - - - - -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	<!--****** 织入，请修改成实际的业务层包名 ********* -->
+
+	<!-- - - - - - - DAO - - - - - - - -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.gcks.smartcity.dao" />
+	</bean>
+	<!--<bean-->
+		<!--class="com.gcks.smartcity.processor.InstantiationTracingBeanPostProcessor">-->
+		<!--&lt;!&ndash; spring 容器初始化成功后需要立即启动线程任务 &ndash;&gt;-->
+		<!--<property name="startJobListWhileSpringInited">-->
+			<!--&lt;!&ndash; 格式：beanName|methodName beanName：在配置文件中定义的bean methodName：需要执行的方法，方法不能带参数， -->
+				<!--支持配置多个启动任务 &ndash;&gt;-->
+			<!--<list>-->
+				<!--&lt;!&ndash;<value>pushMsgExecutor|startPush</value> &ndash;&gt;-->
+				<!--&lt;!&ndash;push任务每天8点启动，23点关闭，如果需要在应用程序启动后立即开始任务，就在这加上相关配置 &ndash;&gt;-->
+			<!--</list>-->
+		<!--</property>-->
+
+	<!--</bean>-->
+	<bean id="contextUtils"
+		class="com.gcks.smartcity.applicationcontext.SpringContextUtils" />
+</beans>

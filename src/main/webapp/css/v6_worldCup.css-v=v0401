@@ -1,0 +1,142 @@
+@charset "UTF-8";
+/*------
+功能：微信大屏幕v6世界杯版
+时间：14.7.4
+作者：张兆翔
+-----*/
+#wrap{background:url(../images/v6_worldCup/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { content: ''; display: block; position: absolute; top:0; right:0; bottom:0; left: 0; background:url(../images/blue/bs-docs.png) repeat center center; opacity: .4;}
+
+.user-list li{
+	border:1px solid #568e1a;
+	background:rgba(236, 214, 2, 0.8) none repeat scroll 0 0 !important;/*实现FF背景透明，文字不透明*/
+	filter:Alpha(opacity=80);
+
+}
+.user-list li a{ position:relative;}/*实现IE文字不透明*/
+.cont-box,.user-name,.cont-box a{ color:#00772D;}
+.head{ border-radius:50%; overflow:hidden;border:2px solid #F7F467;}
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#fff; border:1px solid #FCFF36; border-top:1px solid #FCFF36; box-shadow:0 -1px #96d35d; border-radius:4px; background:-moz-linear-gradient(top , #17B55D, #00772D); background:-webkit-linear-gradient(top , #17B55D, #00772D);background:-o-linear-gradient(top , #17B55D, #00772D); margin-left:5px;}
+.und-btn a:hover{ border:1px solid #FCFF36; background:-moz-linear-gradient(top , #00C54A, #57aa02); background:-webkit-linear-gradient(top , #00C54A, #57aa02);background:-o-linear-gradient(top , #00C54A, #57aa02); box-shadow:0 0 4px #96d35d;}
+
+/*--二维码弹层--*/
+.fl-inner{ box-shadow:0 0 10px #b2dc76;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #4c8c1a ,#204f16); background:-moz-linear-gradient(top , #4c8c1a ,#204f16); background:-o-linear-gradient(top , #4c8c1a ,#204f16);}
+.btn-color,.btn-start{border:1px solid #FCFF36; border-top:1px solid #FCFF36; box-shadow:0 -1px #96d35d; border-radius:4px; background:-moz-linear-gradient(top , #17B55D, #00772D); background:-webkit-linear-gradient(top , #17B55D, #00772D);background:-o-linear-gradient(top , #17B55D, #00772D);}
+.btn-color:hover,.btn-start:hover{ border:1px solid #FCFF36; background:-moz-linear-gradient(top , #00C54A, #57aa02); background:-webkit-linear-gradient(top , #00C54A, #57aa02);background:-o-linear-gradient(top , #00C54A, #57aa02); box-shadow:0 0 4px #96d35d;}
+
+/*-------详情显示------*/
+.detail-box{ border: 1px solid #568e1a;}
+.msg-detail-list{ background:#fff; background: -moz-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -webkit-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -o-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); }
+.detail-bar{ background:#fff;  background: -moz-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -webkit-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -o-linear-gradient(250deg, #fcf9dd , #fdfefc 25%);}
+.detail-top{ border-bottom:1px solid #c1e58a; color:#538935;}
+.user-name-detail{ color:#538935;}
+.detail-cont{ color:#538935;}
+
+
+.word-row{
+	background-color: #ecd603;
+}
+.flag {
+position: absolute;
+top: 27px;
+left: 4px;
+max-width: 158px;
+width:30px;
+height: 41px;
+}
+.head-worldCup{
+	margin:30px 0 0 30px;
+}
+.user-name{
+	/* liw modified margin-left: 42px; */
+	width: auto;
+}
+/*
+.cont-box {
+padding-top: 30px;
+width: 700px;
+max-height: 224px;
+overflow: hidden;
+margin-left: 25px;
+position: relative;
+}
+*/
+.world-cont{
+display: block;
+word-break: break-all;
+word-wrap: break-word;
+font-size: 60px;
+overflow: hidden;
+width: 570px;
+margin-top: 5px;
+}
+/* .btn-icon {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background: url(../images/v6_worldCup/icons.png) no-repeat;
+	text-indent: -9999em;
+	margin-right: 8px;
+	border:2px solid #33a767;
+}
+
+.btn-wifi-disable{
+background-position: 0 0;
+}
+.btn-wifi-disable:hover{
+border:2px solid white;
+background-position: 0 0;
+}
+.btn-pair-disable{
+background-position: 25% 0;
+}
+.btn-pair-disable:hover{
+border:2px solid white;
+background-position: 25% 0;
+}
+
+.btn-lottery-disable{
+background-position: 50% 0;
+}
+.btn-lottery-disable:hover{
+border:2px solid white;
+background-position: 50% 0;
+}
+.btn-setting {
+background-position: 75% 0;
+}
+.btn-setting:hover{
+border:2px solid white;
+background-position: 75% 0;
+}
+.btn-full {
+background-position: 100% 0;
+}
+.btn-full:hover{
+border:2px solid white;
+background-position: 100% 0;
+} */
+
+
+.adjust-left{
+	margin-left: 15px;
+}
+element.style {
+}
+/* liw modified .logo-b {
+display: block;
+width: 179px;
+height: 44px;
+background: url(../images/common/logo_v8.png) 0 0 no-repeat;
+margin-top: 3px;
+} */
+
+
+.user-list li {
+  opacity: 1 !important;
+}

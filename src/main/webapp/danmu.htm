@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>弹幕</title>
+<link rel="stylesheet" href="/css/danmu.css?v=v0401"  type="text/css" />
+<link rel="stylesheet" href="/css/emoji-weixin.css?v=v0401"  type="text/css" />
+<script type="text/javascript" src="/js/modernizr.custom.17774.js" ></script>
+<script type="text/javascript" src="/js/createjs/easeljs-0.8.0.min.js" ></script>
+<script type="text/javascript" src="/js/createjs/tweenjs-0.6.0.min.js" ></script>
+<script type="text/javascript" src="/js/jquery-1.11.2.min.js" ></script>
+<script type="text/javascript" src="/js/jquery.transit.min.js" ></script>
+<script>
+var danmuConfig = {
+    domain: "wxscreen",
+    msgUrl: "wall/api/message/sync",
+    canvas:  0 ,
+    isDefaultStyle:  false };
+//if(window !== top) {
+//  delete danmuConfig.msgUrl;
+//}
+</script>
+</head>
+
+<body style="background:url(/images/v6_colorful/bg.jpg) 50% 0px / auto no-repeat scroll padding-box border-box rgb(255, 255, 255);">
+<div id="wrap">
+  <div class="danmu-box">
+              <div id="js_dRow0" class="danmu-row danmu-row1" style="top:20px;"></div>
+                <div id="js_dRow1" class="danmu-row danmu-row2" style="top:100px;"></div>
+                <div id="js_dRow2" class="danmu-row danmu-row3" style="top:180px;"></div>
+                <div id="js_dRow3" class="danmu-row danmu-row4" style="top:260px;"></div>
+                <div id="js_dRow4" class="danmu-row danmu-row5" style="top:340px;"></div>
+                <div id="js_dRow5" class="danmu-row danmu-row6" style="top:420px;"></div>
+                <div id="js_dRow6" class="danmu-row danmu-row7" style="top:500px;"></div>
+                <div id="js_dRow7" class="danmu-row danmu-row8" style="top:580px;"></div>
+                <div id="js_dRow8" class="danmu-row danmu-row9" style="top:660px;"></div>
+                <div id="js_dRow9" class="danmu-row danmu-row10" style="top:740px;"></div>
+                <div id="js_dRow10" class="danmu-row danmu-row11" style="top:820px;"></div>
+                <div id="js_dRow11" class="danmu-row danmu-row12" style="top:900px;"></div>
+                <div id="js_dRow12" class="danmu-row danmu-row13" style="top:980px;"></div>
+                <div id="js_dRow13" class="danmu-row danmu-row14" style="top:1060px;"></div>
+                <div id="js_dRow14" class="danmu-row danmu-row15" style="top:1140px;"></div>
+                <div id="js_dRow15" class="danmu-row danmu-row16" style="top:1220px;"></div>
+                <div id="js_dRow16" class="danmu-row danmu-row17" style="top:1300px;"></div>
+                <div id="js_dRow17" class="danmu-row danmu-row18" style="top:1380px;"></div>
+                <div id="js_dRow18" class="danmu-row danmu-row19" style="top:1460px;"></div>
+                <div id="js_dRow19" class="danmu-row danmu-row20" style="top:1540px;"></div>
+                <div id="js_dRow20" class="danmu-row danmu-row21" style="top:1620px;"></div>
+                <div id="js_dRow21" class="danmu-row danmu-row22" style="top:1700px;"></div>
+                <div id="js_dRow22" class="danmu-row danmu-row23" style="top:1780px;"></div>
+                <div id="js_dRow23" class="danmu-row danmu-row24" style="top:1860px;"></div>
+                <div id="js_dRow24" class="danmu-row danmu-row25" style="top:1940px;"></div>
+                <div id="js_dRow25" class="danmu-row danmu-row26" style="top:2020px;"></div>
+                <div id="js_dRow26" class="danmu-row danmu-row27" style="top:2100px;"></div>
+                <div id="js_dRow27" class="danmu-row danmu-row28" style="top:2180px;"></div>
+                <div id="js_dRow28" class="danmu-row danmu-row29" style="top:2260px;"></div>
+                <div id="js_dRow29" class="danmu-row danmu-row30" style="top:2340px;"></div>
+                <div id="js_dRow30" class="danmu-row danmu-row31" style="top:2420px;"></div>
+                <div id="js_dRow31" class="danmu-row danmu-row32" style="top:2500px;"></div>
+                <div id="js_dRow32" class="danmu-row danmu-row33" style="top:2580px;"></div>
+                <div id="js_dRow33" class="danmu-row danmu-row34" style="top:2660px;"></div>
+                <div id="js_dRow34" class="danmu-row danmu-row35" style="top:2740px;"></div>
+                <div id="js_dRow35" class="danmu-row danmu-row36" style="top:2820px;"></div>
+                <div id="js_dRow36" class="danmu-row danmu-row37" style="top:2900px;"></div>
+                <div id="js_dRow37" class="danmu-row danmu-row38" style="top:2980px;"></div>
+                <div id="js_dRow38" class="danmu-row danmu-row39" style="top:3060px;"></div>
+                <div id="js_dRow39" class="danmu-row danmu-row40" style="top:3140px;"></div>
+            </div>
+
+  <div class="footer clearfix" >
+    <div class="logo-box left">
+      <a href="###"><img src="../images/logo2.png" tppabs="http://demo.wxscreen.com/images/logo2.png" alt=""></a>
+      <span><img src="../images/danmu/logo-dm.png" tppabs="http://demo.wxscreen.com/images/danmu/logo-dm.png" alt=""></span>
+    </div>
+    <div class="msg right">
+            <p>微信号：CNTV 关注后发送内容即可上墙</p>
+    </div>
+  </div>
+</div>
+  <!--<script type="text/javascript" src="/js/wxscreen/production/app/client.min.js?v=v0420"></script>-->
+  <script type="text/javascript" src="/js/wxscreen/production/app/danmu.min.js?v=v0420"></script>
+
+<script>
+
+danmu.setConf(danmuConfig);
+$(function(){
+  //if(danmuConfig.domain && window === top) {
+    danmu.init();
+    //if(window === top)
+      danmu.play();
+  //}
+});
+</script>
+</body>
+</html>

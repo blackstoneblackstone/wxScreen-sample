@@ -1,0 +1,31 @@
+@charset "utf-8";
+/**
+ *Description：微信大屏幕v6绿色版
+ *Date       ：2013.9.18
+ *Author     ：lij
+**/
+#wrap{background:url(../images/v6_green/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { content: ''; display: block; position: absolute; top:0; right:0; bottom:0; left: 0; background:url(../images/blue/bs-docs.png) repeat center center; opacity: .4;}
+
+.user-list li{ border:1px solid #568e1a; background:#fff; background: -moz-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -webkit-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -o-linear-gradient(250deg, #fcf9dd , #fdfefc 25%);}
+.cont-box,.user-name,.cont-box a{ color:#76a135;}
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#fff; border:1px solid #8fb141; border-top:1px solid #bee63b; box-shadow:0 -1px #96d35d; border-radius:4px; background:-moz-linear-gradient(top , #8ccd07, #57aa02); background:-webkit-linear-gradient(top , #8ccd07, #57aa02);background:-o-linear-gradient(top , #8ccd07, #57aa02); margin-left:5px;}
+.und-btn a:hover{ border:1px solid #c4c9c5; background:-moz-linear-gradient(top , #99c736, #5fa410); background:-webkit-linear-gradient(top , #99c736, #5fa410);background:-o-linear-gradient(top , #99c736, #5fa410); box-shadow:0 0 4px #ffffbe;}
+
+/*--二维码弹层--*/
+.fl-inner{ box-shadow:0 0 10px #b2dc76;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:#4c8c1a; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #4c8c1a ,#204f16); background:-moz-linear-gradient(top , #4c8c1a ,#204f16); background:-o-linear-gradient(top , #4c8c1a ,#204f16);}
+.btn-color,.btn-start{border:1px solid #8fb141; border-top:1px solid #bee63b; box-shadow:0 -1px #96d35d; border-radius:4px; background:-moz-linear-gradient(top , #8ccd07, #57aa02); background:-webkit-linear-gradient(top , #8ccd07, #57aa02);background:-o-linear-gradient(top , #8ccd07, #57aa02);}
+.btn-color:hover,.btn-start:hover{ border:1px solid #c4c9c5; background:-moz-linear-gradient(top , #99c736, #5fa410); background:-webkit-linear-gradient(top , #99c736, #5fa410);background:-o-linear-gradient(top , #99c736, #5fa410); box-shadow:0 0 4px #ffffbe;}
+
+/*-------详情显示------*/
+.detail-box{ border: 1px solid #568e1a;}
+.msg-detail-list{ background:#fff; background: -moz-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -webkit-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -o-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); }
+.detail-bar{ background:#fff;  background: -moz-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -webkit-linear-gradient(250deg, #fcf9dd , #fdfefc 25%); background: -o-linear-gradient(250deg, #fcf9dd , #fdfefc 25%);}
+.detail-top{ border-bottom:1px solid #c1e58a; color:#538935;}
+.user-name-detail{ color:#538935;}
+.detail-cont{ color:#538935;}

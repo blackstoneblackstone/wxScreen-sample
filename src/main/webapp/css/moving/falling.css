@@ -1,0 +1,36 @@
+@charset "utf-8";
+/** 
+ *Description：动画效果
+ *Date       ：2013.12.11
+ *Author     ：lij
+**/
+ 
+/*--飘落动画--*/
+.moving-child{ position:absolute; display:inline-block; width:auto; height:auto; -webkit-animation-iteration-count:infinite,infinite; -webkit-animation-direction:normal,normal; -webkit-animation-timing-function:linear,ease-in;}
+.moving-child img{ position:absolute; width:auto; height:auto; -webkit-animation-iteration-count:infinite; -webkit-animation-direction:alternate; -webkit-animation-timing-function:ease-in-out; -webkit-transform-origin:50% -100%;}
+ 
+ @-webkit-keyframes fade
+{
+    0%   { opacity: 1;}
+	95%  { opacity: 1;}
+	100% { opacity: 0;}
+}
+
+@-webkit-keyframes drop
+{
+    0%   { -webkit-transform: translate(0px, -50px);}
+    100% { -webkit-transform: translate(0px, 968px);}
+}
+
+@-webkit-keyframes clockwiseSpin
+{
+    0%   { -webkit-transform: rotate(-30deg);}
+    100% { -webkit-transform: rotate(30deg);}
+}
+
+@-webkit-keyframes counterclockwiseSpinAndFlip 
+{
+    0%   { -webkit-transform: scale(-1, 1) rotate(50deg);}
+    100% { -webkit-transform: scale(-1, 1) rotate(-50deg);}
+}
+/*--end 飘落动画--*/

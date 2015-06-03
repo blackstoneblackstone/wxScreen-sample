@@ -1,0 +1,51 @@
+@charset "utf-8";
+/**
+ *Description：微信大屏幕弹幕版
+ *Date       ：2014.12.30
+ *Author     ：lij
+**/
+html, body, div, p, span, label, img, a, ol, ul, dl, dt, dd, li, table, tr, td, th, tbody, thead, tfoot, form, fieldset, legent, h1, h2, h3, h4, h5, h6, strong, b, em, blockquote, cite, pre, code, hr, br, input, button, textarea,article, aside, details, figcaption, figure, footer, header, group, menu, nav, section { padding:0px; margin:0px; }
+a { border:0 none; cursor:pointer; }
+ol, ul { list-style-type:none; }
+em,i{ font-style:normal;}
+a:link, a:visited { text-decoration:none; }
+.clearfix:after{clear:both; content:""; display:block; height:0; visibility:hidden; line-height:0;}
+.clearfix { zoom:1; }
+.clear { clear:both; height:0; width:0; display:block; visibility:hidden; overflow:hidden;}
+.left { float:left; display:inline; }
+.right { float:right; display:inline; }
+.block{ display:block;}
+.hidden{ display:none;}
+h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:1em; }
+
+body{ font-family:"Microsoft yahei", "SimHei"; color:#fff; overflow:hidden; background:#000;}
+/* #wrap{ position:relative; width:100%; min-width:1014px; width:1024px; height:768px; margin:0 auto; overflow:hidden;} */
+#wrap{ position:absolute; width:100%; height:100%; margin:0 auto; overflow:hidden; -webkit-backface-visibility: hidden;}
+.danmu-box{ /*height:675px;*/}
+.danmu-row{ position:absolute; width:100%;height:80px;}
+/* 改为在PHP端计算 .danmu-row1{ top:20px;}
+.danmu-row2{ top:100px;}
+.danmu-row3{ top:180px;}
+.danmu-row4{ top:260px;}
+.danmu-row5{ top:340px;}
+.danmu-row6{ top:420px;}
+.danmu-row7{ top:500px;}
+.danmu-row8{ top:580px;} */
+/*禁止自动换行*/
+.danmu-one{
+  -webkit-transform:transition3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0); 
+  height:80px; line-height:80px;font-size:48px; text-shadow:1px -1px rgba(0,0,0,1),-1px 1px rgba(0,0,0,1);  width:auto;position:absolute;top:0;left:0;white-space: nowrap; }
+
+.green{ color:#189c51;}
+.orange{ color:#ff7800;}
+.orange2{ color:#ff4000;}
+
+.footer{ position:absolute; bottom:40px; left:50%; padding:0 40px; width:944px; margin-left:-512px;}
+.logo-box{}
+.logo-box span{ display:inline-block; width:122px; height:37px; padding-top:5px; margin-left:10px; border-left:1px solid #8a8a8a; text-align:center; vertical-align:middle;}
+.logo-box a{ display: inline-block; vertical-align:middle;}
+.msg{ padding:0 40px; height:48px; line-height:48px; text-align:center; background:rgba(255,255,255,.2); font-size:20px;}

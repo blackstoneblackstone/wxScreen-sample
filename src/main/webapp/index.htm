@@ -1,0 +1,2670 @@
+<html><!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>微信大屏幕-微信墙</title>
+
+    <meta name="keywords" content="微信大屏幕,微信墙,微信上墙,签到,抽奖,对对碰,投票,短信上墙"/>
+    <meta name="description" content="微信大屏幕"/>
+    <link rel="stylesheet" href="css/v6_common.css?v=v0401" type="text/css"/>
+    <link rel="stylesheet" href="js/tooltipster-3.0.0/css/tooltipster.css" type="text/css"/>
+    <link rel="stylesheet" href="js/tooltipster-3.0.0/css/themes/tooltipster-shadow.css" type="text/css"/>
+    <link rel="stylesheet" href="css/v6_colorful.css?v=v0401" type="text/css"/>
+
+
+    <link rel="stylesheet" href="css/emoji-weixin.css?v=v0401" type="text/css"/>
+    <link rel="stylesheet" href="css/moving/falling.css?v=v0401" type="text/css"/>
+    <link rel="stylesheet" href="css/moving/animate.css?v=v0401" type="text/css"/>
+
+    <style>
+        .vote-join-num, .voteOptionCount {
+            display: none
+        }
+        .rateOpBtn {
+            display: none !important;
+        }
+        .user-list li {
+            opacity: 0.9
+        }
+        .detail-box {
+            opacity: 0.9
+        }
+    </style>
+
+
+    <script type="text/javascript" src="js/modernizr.custom.17774.js"></script>
+    <script type="text/javascript" src="js/socketio/socket.io.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+
+        (function ($) {
+            if ($.fn.live) {
+                return;
+            }
+            $.fn.live = function (ch, cb) {
+                return $('body').on(ch, this.selector, cb);
+            };
+        })(jQuery);
+
+    </script>
+    <script type="text/javascript" src="js/jscolor-1.4.2/jscolor.js"></script>
+    <script type="text/javascript" src="js/tooltipster-3.0.0/js/jquery.tooltipster.min.js"></script>
+    <script type="text/javascript" src="js/jquery.soChange.js"></script>
+    <script type="text/javascript" src="js/jquery.transit.min.js"></script>
+    <script type="text/javascript" src="js/jquery.indexeddb.js"></script>
+    <script type="text/javascript" src="js/scroll-marquee.js"></script>
+    <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script type="text/javascript" src="js/soundmanagerv2/script/soundmanager2-nodebug-jsmin.js"></script>
+    <script type="text/javascript" src="js/wxscreen/production/wxscreen.min.js?v=v0420"></script>
+
+    <script type="text/javascript">
+        var sysConfig = {
+            isAdmin: 0,
+            template: "v6_colorful",
+            visibleNum: 3,
+            // 10 s
+            autoTime: 5,
+            // 10 ms
+            stepTime: 25,
+            // domain
+            domain: "api",
+            siteUrl: "wall",
+            staticUrl: "wall",
+            companyId: 101039,
+            timerColorMap: ['#e20751', '#ffd5e3'],
+
+            lotteryPlug: 1,
+            ddpPlug: 1,
+            votePlug: 1,
+            checkinPlug: 1,
+            smsPlug: 1,
+
+            showCampusLogo: 0,
+
+            isDemo: 1,
+            maxMessageNum: 9000,
+            isV6: 1,
+            messageVisibleTime: {
+                "latest_hour": "100",
+                "start_date": "",
+                "start_hour": "00",
+                "end_date": "",
+                "end_hour": "00",
+                "start_time": "",
+                "end_time": "2099-07-15 00:00:00"
+            },
+            lotteryVisibleTime: {
+                "latest_hour": "100",
+                "start_date": "",
+                "start_hour": "00",
+                "end_date": "",
+                "end_hour": "00",
+                "start_time": "",
+                "end_time": "2099-07-15 00:00:00"
+            },
+            ddpVisibleTime: {
+                "latest_hour": "1000",
+                "start_date": "",
+                "start_hour": "00",
+                "end_date": "",
+                "end_hour": "00",
+                "start_time": "",
+                "end_time": "2099-07-15 00:00:00"
+            },
+            isCycleScroll: 0,
+            urlSkin: '',
+            newMessageAddType: 0,
+            lang: "zh_cn",
+            customLogo: '',
+            lotteryAnimationDisplayType: 1,
+            keyCodeMap: {
+                "A": 65,
+                "B": 66,
+                "C": 67,
+                "D": 68,
+                "E": 69,
+                "F": 70,
+                "G": 71,
+                "H": 72,
+                "I": 73,
+                "J": 74,
+                "K": 75,
+                "L": 76,
+                "M": 77,
+                "N": 78,
+                "O": 79,
+                "P": 80,
+                "Q": 81,
+                "R": 82,
+                "S": 83,
+                "T": 84,
+                "U": 85,
+                "V": 86,
+                "W": 87,
+                "X": 88,
+                "Y": 89,
+                "Z": 90,
+                "0": 48,
+                "1": 49,
+                "2": 50,
+                "3": 51,
+                "4": 52,
+                "5": 53,
+                "6": 54,
+                "7": 55,
+                "8": 56,
+                "9": 57,
+                "F1": 112,
+                "F2": 113,
+                "F3": 114,
+                "F4": 115,
+                "F5": 116,
+                "F6": 117,
+                "F7": 118,
+                "F8": 119,
+                "F9": 120,
+                "F10": 121,
+                "F11": 122,
+                "F12": 123,
+                "BackSpace": 8,
+                "Esc": 27,
+                "UpArrow": 38,
+                "RightArrow": 39,
+                "DownArrow": 40,
+                "LeftArrow": 37,
+                "Alt": 18,
+                "Control": 17,
+                "Shift": 16,
+                "Enter": 13,
+                "Delete": 46,
+                "Space": 32,
+                "Tab": 9,
+                "Clear": 12,
+                "PageUp": 33,
+                "PageDown": 34,
+                "Insert": 45,
+                "Home": 36,
+                "End": 35,
+                "NumLock": 144,
+                "CapeLock": 20,
+                "-": 189,
+                ".": 190,
+                "/": 191,
+                "`": 192,
+                "[": 219,
+                ";": 186,
+                "\\": 220,
+                "=": 187,
+                "]": 221,
+                ",": 188,
+                "'": 222
+            }
+        };
+        wxscreen.init(sysConfig);
+        wxscreen.DEBUG = false;
+    </script>
+
+</head>
+
+<body>
+
+<div id="wrap" class="wrapbg">
+
+    <div class="chrometips chromeTip" style="display:none;">
+        <a href="javascript:void(0);" class="btntips-close" id="chromeTipCloseBtn">×</a>
+
+        <div class="inner-chrometips">
+            <p class="chrm-word1">由于你正在使用非Chrome浏览器，大屏幕的体验处于不佳状态，建议您立刻更换浏览器，以获得更好的大屏幕产品用户体验</p>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            var isChrome = navigator.userAgent.indexOf('Chrome') != -1;
+            if (!isChrome) {
+                $('.chromeTip').show();
+            }
+            //
+            $('#chromeTipCloseBtn').click(function () {
+                $('.chromeTip').hide();
+            });
+            //10s后自动关闭
+            setTimeout(function () {
+                $('.chromeTip').hide();
+            }, 10000);
+        });
+    </script>
+
+    <div id="whole">
+        <div id="header" class="clearfix">
+            <span class="logo-t left"><img class="logoScreenLeft" src="images/common/logo_v6.png"/></span>
+
+            <div class="word-scroll left">
+                <div class="clearfix">
+                    <div class="scrollbox left">
+                        <ul class="word-list wordList">
+                            <li class="themeBox">微信大屏幕官方演示页面<br>点击下方对应功能按钮可查看功能演示</li>
+
+                            <li class="themeBox" style="display:none;">微信号：hudongdapingmu<br/>关注后发送内容即可上墙</li>
+                            <li class="themeBox" style="display:none;">编辑短信内容#微信墙#+您想说的话 <br>到 1069-0133-0101-1350 即可上墙
+                            </li>
+                        </ul>
+                        <ul class="word-list checkinWordList" style="visibility:hidden;margin-top: -96px;">
+                            <li class="themeBox">微信大屏幕官方演示页面<br>点击下方对应功能按钮可查看功能演示</li>
+                            <li class="themeBox" style="display:none;">关注微信号：hudongdapingmu<br>发送含有“签到”两字的内容即可签到</li>
+                        </ul>
+
+                    </div>
+                    <div class="num-t left">
+                        <p><em class="messageTotal"></em><span>条信息</span></p>
+                    </div>
+                </div>
+            </div>
+      <span class="reserved right showIntroBtn">
+                  <img src="../s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_1_50479_7439.png"
+                       style="max-width:126px;max-height:96px;">
+              </span>
+        </div>
+        <div id="container">
+            <div class="con-inner scrollBox">
+                <ul class="user-list">
+
+                </ul>
+            </div>
+        </div>
+        <div id="footer" class="clearfix">
+
+            <!--logo开始-->
+            <div class="left-bottom left">
+                <span class="logo-b logo-sun"></span>
+
+            </div>
+            <!--logo结束-->
+
+            <!--滚动公告-->
+            <div class="words-bottom right hidden">
+                <div id="wordScroll" class="word-scroll2">
+                    <ul class="wb-list clearfix">
+                        <li>这里可以填写活动现场的公告之类的，比如找人，临时通知等等。</li>
+                        <li>可以发多条公告的哦~~~~</li>
+                    </ul>
+                </div>
+            </div>
+            <!--滚动公告结束-->
+
+
+            <div class="btn-wrap3 right">
+                <div class="prodres-box">
+                    <canvas id="cirProgress" width="50" height="50"></canvas>
+                </div>
+                <div class="btns">
+
+                    <!--删除了app-->
+
+                    <a href="javascript:void(0);" class="tooltip btnStar btn-icon btn-tag "
+                       title="点击查看星标消息，快捷键“j”">加星消息</a>
+
+                    <a href="javascript:void(0);" class="tooltip btn-icon btn-menu" title="应用中心">应用中心</a>
+
+                    <a href="javascript:void(0);" class="tooltip btnSkinSel  btn-icon" title="更换风格，快捷键“f”">风格选择</a>
+
+
+                    <a href="javascript:void(0);" class="tooltip btnFullScreen btn-icon btn-full" title="全屏">全屏</a>
+
+                    <a href="javascript:void(0);" class="tooltip btnOldest     btn-func btn-old"
+                       title="最旧一屏，快捷键“←”">最旧</a>
+                    <a href="javascript:void(0);" class="tooltip btnPrev       btn-func btn-prev"
+                       title="上一屏，快捷键“↑”">上一条</a>
+                    <a href="javascript:void(0);" class="tooltip btnPause      btn-func btn-begin"
+                       title="暂停，快捷键“空格”">暂停</a>
+                    <a href="javascript:void(0);" class="tooltip btnNext       btn-func btn-next"
+                       title="下一屏，快捷键“↓”">下一条</a>
+                    <a href="javascript:void(0);" class="tooltip btnNewest     btn-func btn-new"
+                       title="最新一屏，快捷键“→”">最新</a>
+                </div>
+
+                <!--应用弹出层-->
+                <div class="btn-popup hidden">
+                    <i class="icon-arrow2"></i>
+                    <ul class="btn-list clearfix">
+
+                        <li class="curr"><a href="javascript:void(0);" class="tooltip btnLottery neicon ne-lottery"
+                                            title="抽奖，快捷键“c”"><i></i></a></li>
+                        <li class="curr"><a href="javascript:void(0);" class="tooltip btnCheckin neicon ne-checkin"
+                                            title="签到墙，快捷键“q”"><i></i></a></li>
+                        <li class="curr"><a href="javascript:void(0);" class="tooltip neicon ne-laohuji"
+                                            data-shortcut="L" data-open="1" data-goods_id="110" data-title="老虎机抽奖"
+                                            title="老虎机，快捷键“L”"><i></i></a></li>
+
+                        <li class="curr"><a href="/danmu.htm" class="tooltip neicon ne-danmu" data-shortcut="M"
+                                            data-open="1" data-goods_id="107" data-title="弹幕" title="弹幕，快捷键“M”"><i></i></a>
+                        </li>
+                        <li class="curr"><a href="javascript:void(0);" class="tooltip btnDdp neicon ne-pair"
+                                            title="对对碰，快捷键“d”"><i></i></a></li>
+
+                        <li class="curr"><a href="javascript:void(0);" class="tooltip btnVote neicon ne-vote"
+                                            title="投票，快捷键“t”"><i></i></a></li>
+
+                        <li class="curr"><a href="javascript:void(0);" class="tooltip neicon ne-shake"
+                                            title="摇一摇，快捷键“Y”"><i></i></a></li>
+
+
+                        <li class="curr"><a href="javascript:void(0);" class="tooltip neicon ne-pingfen" data-open=""
+                                            data-goods_id="108" data-title="评分" title="评分，快捷键“P”"
+                                            data-shortcut="P"><i></i></a></li>
+
+
+                        <li class="curr"><a href="javascript:void(0);" class="tooltip neicon ne-shang" data-shortcut="S"
+                                            data-open="" data-goods_id="109" data-title="打赏"
+                                            title="打赏，快捷键“S”"><i></i></a></li>
+
+                        <li class=""><a href="javascript:void(0);" class="tooltip neicon ne-turntable" data-shortcut="Z"
+                                        data-open="" data-goods_id="114" data-title="大转盘" title='大转盘，快捷键 "Z
+          "'><i></i></a></li>
+                    </ul>
+                </div>
+                <!--应用弹出层结束-->
+            </div>
+        </div>
+
+        <script>
+            $(function () {
+                $('.neicon').click(function (e) {
+                    var data = $(this).data();
+                    if (data.open <= 0) {
+                    } else {
+                        if (data.shortcut) {
+                            var keyCode = wxscreen.getConf('keyCodeMap')[data.shortcut];
+                            if (keyCode) wxscreen.pub('key.' + keyCode + '.down', e);
+                        }
+                    }
+                });
+                //app应用层的show && hide
+                $('.btn-menu').click(function () {
+                    $('.btn-popup').toggleClass('hidden');
+                });
+
+                //判断是否有公告
+                var hasNotice = 2;
+                if (hasNotice) {
+                    var iTimer = setTimeout(function () {
+                        $('.btn-wrap3').fadeOut('slow', function () {
+                            $(this).addClass('hidden');
+                            $('.words-bottom').fadeIn('slow', function () {
+                                $(this).removeClass('hidden');
+                                //公告滚动
+                                $('#wordScroll').kxbdSuperMarquee({
+                                    isMarquee: true,
+                                    isEqual: false,
+                                    scrollDelay: 30,
+                                    direction: 'left'
+                                });
+                            });
+                        });
+
+                    }, 10000);
+
+                    //当鼠标悬停的时清除定时器
+                    $('.btn-wrap3').mouseenter(function () {
+                        clearTimeout(iTimer);
+                    });
+
+                    //移出的时候再次加入定时器
+                    $('.btn-wrap3').mouseleave(function () {
+                        clearTimeout(iTimer);
+                        iTimer = setTimeout(function () {
+                            $('.btn-wrap3').addClass('hidden').fadeOut('slow', function () {
+                                $('.words-bottom').removeClass('hidden').fadeIn('slow', function () {
+                                    $('.btn-popup').addClass('hidden');
+                                });
+                            });
+                        }, 10000);
+                    });
+
+                    $('.words-bottom').mouseenter(function () {
+                        $('.words-bottom').fadeOut('slow', function () {
+                            $(this).addClass('hidden');
+                            $('.btn-wrap3').fadeIn('slow', function () {
+                                $(this).removeClass('hidden');
+                            });
+                        })
+
+                    });
+
+                    //定时请求最新的消息
+                    var prevData = [{
+                        "id": "9",
+                        "company_id": "101039",
+                        "user_id": "40044",
+                        "title": "\u8fd9\u91cc\u53ef\u4ee5\u586b\u5199\u6d3b\u52a8\u73b0\u573a\u7684\u516c\u544a\u4e4b\u7c7b\u7684\uff0c\u6bd4\u5982\u627e\u4eba\uff0c\u4e34\u65f6\u901a\u77e5\u7b49\u7b49\u3002",
+                        "add_time": "2015-03-31 11:29:42",
+                        "status": "1",
+                        "is_open": "1",
+                        "open_time": "0000-00-00 00:00:00",
+                        "close_time": "2015-03-31 11:29:42",
+                        "update_time": "2015-03-31 12:22:48"
+                    }, {
+                        "id": "12",
+                        "company_id": "101039",
+                        "user_id": "40044",
+                        "title": "\u53ef\u4ee5\u53d1\u591a\u6761\u516c\u544a\u7684\u54e6~~~~",
+                        "add_time": "2015-03-31 12:56:28",
+                        "status": "1",
+                        "is_open": "1",
+                        "open_time": "2015-03-31 12:56:28",
+                        "close_time": "0000-00-00 00:00:00",
+                        "update_time": "2015-03-31 12:56:28"
+                    }];
+                    var postUrl = 'wall/api/user/notice/get_latest_notice';
+                    setInterval(function () {
+                        $.post(postUrl, function (notice) {
+                            if (notice.info == "ok") {
+                                //如果和之前的数据不相等的时候才进行更新
+                                if (prevData.toString() != notice.data.toString()) {
+                                    prevData = notice.data;
+                                    var sHtml = '';
+                                    for (var i = 0; i < notice.data.length; i++) {
+                                        sHtml += "<li>" + notice.data[i].title + "</li>";
+                                    }
+
+                                    $('.wb-list').html(sHtml);
+                                    $('#wordScroll').kxbdSuperMarquee({
+                                        isMarquee: true,
+                                        isEqual: false,
+                                        scrollDelay: 40,
+                                        direction: 'left'
+                                    });
+                                }
+                            }
+                        }, "json")
+                    }, 10000);
+                }
+
+            });
+        </script>
+
+        <!--单条详情-->
+        <div class="detail-box messageDetailBox hidden">
+            <div class="msg-detail-list messageDetailList">
+
+            </div>
+            <a href="javascript:void(0);" class="flbtn-close messageDetailCloseBtn" style="display:none;"></a>
+        </div>
+
+        <!--end 详情-->
+
+        <script type="text/javascript" src="js/wxscreen/production/plug/messageDetail.min.js"></script>
+        <script>
+            $(function () {
+                wxscreen.messageDetail.init();
+            });
+        </script>
+        <!--抽奖-->
+
+        <div class=" fl-lottery lotteryLayer" style="display:none;">
+            <div class="fl-inner fl-bg">
+                <div class="inner-cont clearfix">
+                    <div class="prize-box right">
+                        <span class="props props-color"></span>
+
+                        <div class="outer-prize">
+                            <div class="wrap-prize">
+                                <div class="list-top clearfix">
+                                    <p class="pro-num right">获奖人数<em class="winUserNum">
+                                        <img src="images/loading.gif"/></em>
+                                    </p>
+                                    <span>获奖名单</span>
+                                </div>
+                                <div class="list-box">
+                                    <p class="list-tit">
+                                        <span>获奖序号</span>
+                                        <span>用户昵称</span>
+                                    </p>
+
+                                    <div class="priname-box">
+                                        <ul class="prize-list winUserList">
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--end .list-box-->
+                                <div class="und-btn">
+                                    <a href="javascript:void(0);" id="resetLotteryBtn" class="resetLotteryBtn"><span style="display:none;">重新抽奖</span><img src="images/loading.gif"
+                                                                                                                                      tppabs="http://demo.wxscreen.com/images/loading.gif"/></a>
+                                    <a href="javascript:void(0);" id="saveAwards" class="resetLotteryBtn"><span style="display:none;">保存结果</span><img src="images/loading.gif" tppabs="http://demo.wxscreen.com/images/loading.gif"/></a>
+                                </div>
+                            </div>
+                            <!--end .wrap-prize-->
+                        </div>
+                        <!--end .outer-prize-->
+                    </div>
+                    <!--end .prize-box-->
+
+
+                    <div class="lottery-box">
+                        <div class="box-ltop">
+                            <span class="lott-wt">现场抽奖</span>
+
+                            <p class="lott-w"><span>参加抽奖人数</span><em class="join-num lotteryUserNum"><img
+                                    src="images/loading.gif" tppabs="http://demo.wxscreen.com/images/loading.gif"/></em>
+                            </p>
+                        </div>
+                        <div class="rock-box">
+                            <span class="rock-head"><img data-default_src="images/v6_colorful/lottery-default.jpg"
+                                                         tppabs="http://demo.wxscreen.com/images/v6_colorful/lottery-default.jpg"
+                                                         src="images/v6_colorful/lottery-default.jpg"
+                                                         tppabs="http://demo.wxscreen.com/images/v6_colorful/lottery-default.jpg"
+                                                         class="lotteryImg" width="178" height="178" alt=""></span>
+                            <span class="rock-name lotteryName">... ...</span>
+                        </div>
+                        <div class="btn-clear clearfix">
+                            <div class="choose-num " id="lotteryNumBox">
+                                <span>一次抽取</span>
+                                <select name="" id="lotteryNumSel">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                <span>人</span>
+                            </div>
+                            <p class="btn-rock right"><a href="javascript:void(0);"
+                                                         class="btn-start startLotteryBtn"><span>正在准备...</span><img
+                                    style="display:none;" src="images/loading.gif"
+                                    tppabs="http://demo.wxscreen.com/images/loading.gif"/></a></p>
+                        </div>
+                        <div class="btn-clear" id="slaveScreenLotteryTip" style="display:none;">
+                            <p class="sup-tips">抽奖进行中...</p>
+                        </div>
+                    </div>
+                    <!--end .lottery-box-->
+                </div>
+            </div>
+        </div>
+        <!--end 抽奖-->
+        <script type="text/javascript" src="js/wxscreen/production/plug/lottery.min.js?v=v0420"></script>
+        <script>
+            wxscreen.lottery.init({
+                is_show_win_mobile: false,
+                award_list: null
+            });
+            $("#saveAwards").click(function(){
+            wxscreen.lottery.saveAwards();
+            });
+        </script>
+
+
+        <!--二维码弹层-->
+        <div class="fl-layer floatLayer introBox" style="display:none;">
+            <div class="fl-inner">
+                <a href="javascript:void(0);" class="flbtn-close showIntroBtn"></a>
+
+                <p class="notice1">使用微信扫描以下任意二维码，关注后发送内容即有机会上墙</p>
+                <ul class="img-list">
+                    <li class="img-b"><img
+                            src="../s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_3_50455_6386.png"
+                            tppabs="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_3_50455_6386.png"
+                            alt=""></li>
+                    <li class="img-d"><img
+                            src="../s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_2_54158_3315.png"
+                            tppabs="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_2_54158_3315.png"
+                            alt=""></li>
+                    <li class="img-s"><img
+                            src="../s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_1_50479_7439.png"
+                            tppabs="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_1_50479_7439.png"
+                            alt=""></li>
+                </ul>
+                <p class="notice2">无法扫描二维码的用户，请关注微信号:
+          <span class="js_weixinAccountName">
+            hudongdapingmu          </span>
+                </p>
+            </div>
+        </div>
+        <!--end 二维码弹层-->
+
+
+
+        <div class="fl-layer checkin-pop" style="visibility:hidden;" id="checkinLayer">
+
+            <div class="inner-checkin checkinQr">
+                <div class="checkin-tips clearfix">
+                    <span class="code-checkin left"><img
+                            src="../s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_3_50455_6386.png"
+                            tppabs="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_3_50455_6386.png"
+                            alt="" width="430"></span>
+
+                    <div class="checkin-right right">
+                        <span class="cki-tipsimg"><img src="images/common/icon_sao.png"
+                                                       tppabs="http://demo.wxscreen.com/images/common/icon_sao.png"
+                                                       alt=""></span>
+
+                        <p class="cki-tips1">请扫描此二维码</p>
+
+                        <p class="cki-tips2">发送含“签到”的文字审核通过后可上签到墙</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inner-checkin checkinContainer" style="visibility:hidden;">
+
+                <div id="checkinQrBox" class="checkin-qr-box" style="display:none;">
+                    <img src="../s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_2_54158_3315.png"
+                         tppabs="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/03/20140103185421000000_2_54158_3315.png">
+
+                    <p class="checkin-tip-left" style="">签到流程：<br>
+                        1. 微信扫描上方二维码<br>
+                        2. 关注后点击查看消息<br>
+                        3. 发送含"签到"的文字<br>
+                        4. 审核通过后即可上墙</p>
+                </div>
+
+                <ul class="heads-list clearfix " id="checkinBox">
+
+                </ul>
+
+            </div>
+        </div>
+        <script type="text/javascript" src="js/wxscreen/production/plug/checkin_scroll.min.js?v=v0420"
+                tppabs="http://demo.wxscreen.com/js/wxscreen/production/plug/checkin_scroll.min.js?v=v0420"></script>
+        <script>
+            $(function () {
+                // 初始化签到墙
+                wxscreen.checkin.init({
+                    allowRepeatCheckin: 1,
+                    checkinVisibleTime: "72",
+                    showQr: false,
+                    custom_checkin_info: {
+                        "data": {
+                            "id": "2",
+                            "user_id": "40044",
+                            "company_id": "101039",
+                            "width": "0.0000",
+                            "height": "0.0000",
+                            "x": "0.0000",
+                            "y": "0.0000",
+                            "content": "",
+                            "content_tpl": "",
+                            "update_time": "0000-00-00 00:00:00",
+                            "add_time": "2014-12-28 07:17:34"
+                        },
+                        "tool_data": {
+                            "id": "2",
+                            "user_id": "40044",
+                            "company_id": "101039",
+                            "bg": "",
+                            "custom_avatar_data": "",
+                            "update_time": "2014-12-28 07:17:34",
+                            "add_time": "2014-12-28 07:17:34"
+                        }
+                    },
+                    custom_checkin_hash: "d41d8cd98f00b204e9800998ecf8427e"
+                });
+            });
+        </script>
+
+
+
+    </div>
+</div>
+
+<!-- applist -->
+<style>
+    .screen-app {
+        border: none;
+        position: absolute;
+        top: 0;
+        display: block;
+    }
+
+    .app-fullscreen {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<script type="text/javascript" src="js/wxscreen/production/app/app.min.js?v=v0420"></script>
+
+
+<div
+        id="app_2"
+        data-title="老虎机抽奖"
+        data-shortcut="L"
+        class="screen-app app-fullscreen"
+        style="display:none;"><!--老虎机抽奖-->
+    <div class="pop-lottery" id="js_lhjLayer">
+        <div class="lhj-loading js_lhjLoading"><img src="images/special-loading3.gif"
+                                                    tppabs="http://demo.wxscreen.com/images/special-loading3.gif"/>
+        </div>
+        <div class="ele-spring"></div>
+        <div class="colorful js_lhjColorRibbon hidden"><img src="images/lottery/colorful.png"
+                                                            tppabs="http://demo.wxscreen.com/images/lottery/colorful.png"
+                                                            alt=""></div>
+        <div class="inner-lottery">
+            <h2 class="tit-lott">谁是幸运星</h2>
+            <!--抽奖-->
+            <div class="lottery-box2">
+                <a href="javascript:void(0);" class="logo2"><img src="images/logo2.png"
+                                                                 tppabs="http://demo.wxscreen.com/images/logo2.png"
+                                                                 alt=""></a>
+
+                <div class="btn-lottery-start" id="js_lhjStartBtn"><img src="images/lottery/btn-switch.png"
+                                                                        tppabs="http://demo.wxscreen.com/images/lottery/btn-switch.png"
+                                                                        alt=""></div>
+                <div class="point-box" id="js_lhjLightBox">
+                    <ul class="point-list pl1 clearfix">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class="point-list pl2">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class="point-list pl3 clearfix">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li class="place-li"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class="point-list pl4">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="inner-this js_lhjBoxAll">
+
+                    <div class="box lhj-box-10 hidden">
+                        <ul class="avatar-list clearfix">
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box lhj-box-9 hidden">
+                        <div class="box lhj-box-9-1">
+                            <ul class="avatar-list clearfix">
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="box lhj-box-9-2">
+                            <ul class="avatar-list clearfix">
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="box lhj-box-8 hidden">
+                        <ul class="avatar-list clearfix">
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box lhj-box-7 hidden">
+                        <div class="box lhj-box-7-1">
+                            <ul class="avatar-list clearfix">
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="box lhj-box-7-2">
+                            <ul class="avatar-list clearfix">
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="s-box clearfix">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                        <img src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                             data-def_src="images/lottery/avatar.jpg"
+                                             tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="box lhj-box-6 hidden">
+                        <ul class="avatar-list clearfix">
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box lhj-box-5 hidden">
+                        <ul class="avatar-list clearfix">
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box lhj-box-4 hidden">
+                        <ul class="avatar-list clearfix">
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box lhj-box-3 hidden">
+                        <ul class="avatar-list clearfix">
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box lhj-box-2 hidden">
+                        <ul class="avatar-list clearfix">
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box lhj-box-1">
+                        <ul class="avatar-list clearfix">
+                            <li>
+                                <div class="s-box clearfix">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                    <img src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg"
+                                         data-def_src="images/lottery/avatar.jpg"
+                                         tppabs="http://demo.wxscreen.com/images/lottery/avatar.jpg" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+            <!--end 抽奖-->
+            <!--中奖-->
+            <div class="prize-box2">
+                <div class="tit-bar clearfix">
+                    <a href="javascript:void(0);" class="btn-empty right" id="js_lhjShowLotteryBtn"
+                       style="width: 100px;margin-left: 10px;"><span style="width:100px;">显示所有名单</span></a>
+                    <a href="javascript:void(0);" class="btn-empty right" id="js_lhjHideLotteryBtn"
+                       style="width: 100px;margin-left: 10px;"><span style="width:100px;">隐藏当前名单</span></a>
+                    <a href="javascript:void(0);" class="btn-empty right" id="js_lhjClearBtn"><span>清空</span></a>
+
+                    <p class="btn-empty right" style="width: 200px;margin-right: 15px;">
+          <span style="width: 200px;">设置抽取人数：
+            <select id="js_lhjLotteryUserNum" style="width: 55px;font-size: 22px;display: inline-block;">
+                <option value="10" selected="selected">10</option>
+                <option value="9">9</option>
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+          </span>
+                    </p>
+                    <span class="tit2">中奖名单</span>
+                </div>
+                <div class="prize-list-box">
+                    <ul class="prizeList clearfix js_lhjPrizeList">
+
+                    </ul>
+                    <a href="javascript:void(0);" class="prev js_lhjPrevBtn"></a>
+                    <a href="javascript:void(0);" class="next js_lhjNextBtn"></a>
+                </div>
+            </div>
+            <!--end 中奖-->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/wxscreen/production/app/laohuji.min.js?v=v0420"></script>
+
+    <script>
+        $(function () {
+            wxscreen.laohuji.init("app_2", {
+                "id": "2",
+                "goods_id": "110",
+                "is_free": "1",
+                "name": "laohuji",
+                "setting_tpl": "",
+                "title": "\u8001\u864e\u673a\u62bd\u5956",
+                "icon": "\/slave2_store2\/2015\/01\/19\/20150119042715000000_1_112513_5038.jpg",
+                "shortcut": "L",
+                "manage_url": "",
+                "url": "file",
+                "type": "1",
+                "width": "0.0000",
+                "height": "0.0000",
+                "x": "0.0000",
+                "y": "0.0000",
+                "status": "1",
+                "update_time": "2015-01-31 21:09:49",
+                "add_time": "2015-01-19 04:27:15",
+                "relation_info": {
+                    "id": "4",
+                    "company_id": "101039",
+                    "app_id": "2",
+                    "op_id": "20993",
+                    "start_time": "2015-01-19 00:00:00",
+                    "end_time": "2099-01-19 23:59:59",
+                    "setting_value": "",
+                    "update_time": "2015-01-19 04:28:05",
+                    "add_time": "2015-01-19 04:28:04"
+                }
+            });
+        });
+    </script>
+</div>
+<script>wxscreen.app.reg("app_2", {
+    "id": "2",
+    "goods_id": "110",
+    "is_free": "1",
+    "name": "laohuji",
+    "setting_tpl": "",
+    "title": "\u8001\u864e\u673a\u62bd\u5956",
+    "icon": "\/slave2_store2\/2015\/01\/19\/20150119042715000000_1_112513_5038.jpg",
+    "shortcut": "L",
+    "manage_url": "",
+    "url": "file",
+    "type": "1",
+    "width": "0.0000",
+    "height": "0.0000",
+    "x": "0.0000",
+    "y": "0.0000",
+    "status": "1",
+    "update_time": "2015-01-31 21:09:49",
+    "add_time": "2015-01-19 04:27:15",
+    "relation_info": {
+        "id": "4",
+        "company_id": "101039",
+        "app_id": "2",
+        "op_id": "20993",
+        "start_time": "2015-01-19 00:00:00",
+        "end_time": "2099-01-19 23:59:59",
+        "setting_value": "",
+        "update_time": "2015-01-19 04:28:05",
+        "add_time": "2015-01-19 04:28:04"
+    }
+});</script>
+
+
+<script>
+    wxscreen.app.reg("app_3", {
+        "id": "3",
+        "goods_id": "109",
+        "is_free": "5",
+        "name": "prize",
+        "setting_tpl": "",
+        "title": "\u6253\u8d4f",
+        "icon": "\/slave2_store2\/2015\/01\/29\/20150129165238000000_1_6767_4010.png",
+        "shortcut": "S",
+        "manage_url": "{SITE_URL}\/{COMPANY_DOMAIN}\/user\/prize",
+        "url": "http:\/\/demo.wxscreen.com\/wxscreen\/prize",
+        "type": "1",
+        "width": "0.0000",
+        "height": "0.0000",
+        "x": "0.0000",
+        "y": "0.0000",
+        "status": "1",
+        "update_time": "2015-02-02 11:01:14",
+        "add_time": "2015-01-29 16:52:38",
+        "relation_info": {
+            "id": "158",
+            "company_id": "101039",
+            "app_id": "3",
+            "op_id": "16807",
+            "start_time": "2015-02-13 00:00:00",
+            "end_time": "2099-02-14 05:59:59",
+            "setting_value": "",
+            "update_time": "2015-02-13 02:11:17",
+            "add_time": "2015-02-13 02:11:17"
+        },
+        "listenAPI": ["message.newMsgReceived", "main.hashTrigger"]
+    });
+</script>
+
+
+
+<!-- </body></html> -->
+
+
+<script>
+    //$(function(){
+
+    // 加载js语言包
+    wxscreen.template.add("message.msg_loaded", "大屏幕数据已经加载");
+    wxscreen.template.add("message.detail_img_show_ori", "查看原图");
+    wxscreen.template.add("message.detail_img_turn_left", "向左转");
+    wxscreen.template.add("message.detail_img_turn_right", "向右转");
+    wxscreen.template.add("message.detail_msg_from_sms", "来自短信");
+    wxscreen.template.add("message.detail_msg_from_weixin", "来自微信");
+    wxscreen.template.add("message.msg_total_desc", "条信息");
+    wxscreen.template.add("message.control_btn_network_tip", "网络已断开，请检查您的网络连接");
+    wxscreen.template.add("message.control_btn_checkin_tip", "签到墙，快捷键“q”");
+    wxscreen.template.add("message.control_btn_style_tip", "更换风格，快捷键“f”");
+    wxscreen.template.add("message.control_btn_star_msg_tip", "点击查看星标消息，快捷键“j”");
+    wxscreen.template.add("message.control_btn_normal_msg_tip", "点击查看上墙消息，快捷键“j”");
+    wxscreen.template.add("message.control_btn_lottery_tip", "抽奖，快捷键“c”");
+    wxscreen.template.add("message.control_btn_ddp_tip", "对对碰，快捷键“d”");
+    wxscreen.template.add("message.control_btn_vote_tip", "投票，快捷键“t”");
+    wxscreen.template.add("message.control_btn_setting_tip", "设置，快捷键“,”");
+    wxscreen.template.add("message.control_btn_fullscreen_tip", "全屏");
+    wxscreen.template.add("message.control_btn_oldest_tip", "最旧一屏，快捷键“←”");
+    wxscreen.template.add("message.control_btn_prev_tip", "上一屏，快捷键“↑”");
+    wxscreen.template.add("message.control_btn_pause_tip", "暂停，快捷键“空格”");
+    wxscreen.template.add("message.control_btn_next_tip", "下一屏，快捷键“↓”");
+    wxscreen.template.add("message.control_btn_newest_tip", "最新一屏，快捷键“→”");
+    wxscreen.template.add("message.control_btn_shake_tip", "摇一摇，快捷键“Y”");
+    wxscreen.template.add("message.control_btn_danmu_tip", "弹幕，快捷键“M”");
+    wxscreen.template.add("message.control_btn_laohuji_tip", "老虎机，快捷键“L”");
+    wxscreen.template.add("message.control_btn_shang_tip", "打赏，快捷键“S”");
+    wxscreen.template.add("message.control_btn_rate_tip", "评分，快捷键“P”");
+    wxscreen.template.add("lottery.win_user_num", "获奖人数");
+    wxscreen.template.add("lottery.win_user_list", "获奖名单");
+    wxscreen.template.add("lottery.win_user_order", "获奖序号");
+    wxscreen.template.add("lottery.win_user_nickname", "用户昵称");
+    wxscreen.template.add("lottery.win_user_mobile", "手机号");
+    wxscreen.template.add("lottery.reset_lottery", "重新抽奖");
+    wxscreen.template.add("lottery.reset_all_lottery", "全部重置");
+    wxscreen.template.add("lottery.lottery_title", "现场抽奖");
+    wxscreen.template.add("lottery.lottery_user_num", "参加抽奖人数");
+    wxscreen.template.add("lottery.once_lottery_num", "一次抽取");
+    wxscreen.template.add("lottery.lottery_unit", "人");
+    wxscreen.template.add("lottery.lottery_start", "开始抽奖");
+    wxscreen.template.add("lottery.loading", "正在准备...");
+    wxscreen.template.add("lottery.lottery_busy", "抽奖进行中...");
+    wxscreen.template.add("lottery.stop", "停止");
+    wxscreen.template.add("lottery.reset_alert", "重置抽奖后，中奖用户将会重新放入奖池，确定要重置吗？");
+    wxscreen.template.add("lottery.delete_alert", "删除中奖用户后将会使其重新放入奖池，确定要删除吗？");
+    wxscreen.template.add("lottery.no_user_alert", "亲，抽奖池里已经没有可抽奖的用户啦~");
+    wxscreen.template.add("lottery.save_last_data", "正在保存上次中奖数据，请稍等~");
+    wxscreen.template.add("lottery.in_reset_alert", "请稍等，大屏幕正在重置抽奖~");
+    wxscreen.template.add("lottery.not_opened", "您还没有开通抽奖功能，详情咨询客服");
+    wxscreen.template.add("qr.follow_intro", "使用微信扫描以下任意二维码，关注后发送内容即有机会上墙");
+    wxscreen.template.add("qr.can_not_scan_tip", "无法扫描二维码的用户，请关注微信号: ");
+    wxscreen.template.add("qr.follow_intro_no_account", "使用微信扫描以下任意二维码，发送内容即有机会上墙");
+
+    // 开启倒计时
+    wxscreen.progress.init();
+
+    // 绑定key
+    wxscreen.btnKeys.init();
+    //用户初始化
+    wxscreen.user.init();
+
+    //hashtrigger
+    wxscreen.subOnce('message.loadComplete', function () {
+        setTimeout(function () {
+            wxscreen.hashTrigger();
+        }, 400);
+    });
+
+    // 初始化
+    wxscreen.message.init(
+            // 新消息列表
+            [],
+            // 消息列表
+            [{
+                "id": "5351110",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353510",
+                "msg_type": "text",
+                "content": "\u4e0a\u5899",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901254",
+                "on_wall_time": "2015-05-02 21:47:04",
+                "mp_add_time": "2015-05-02 21:47:04",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 21:47:04",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/wIp3SvicCKL3CicKt0zmmic0p7sEG2mJzT6nduibmksVvNQiajMlDMQ1518OZbu2xCcEjaEldAFkwLRyhRDEHbfUaM4lqsybQtu5s\/0",
+                "username": "\u5e84\u56ed\u5c0f\u8463\u54e5",
+                "come_from": "\u7518\u8083 \u5170\u5dde\u5e02"
+            }, {
+                "id": "5351116",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353516",
+                "msg_type": "text",
+                "content": "\u4e0a\u5899",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901267",
+                "on_wall_time": "2015-05-02 21:49:03",
+                "mp_add_time": "2015-05-02 21:49:03",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 21:49:03",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/54Jo7V9ZzWW4w6XMrTJ12kWm3IFYEqzXrq8tHXLAmTjHUnjdJVPfCYKC54CErR0lqrPIicxIyU9jlrMicpnELBibHU2qbZ2kQom\/0",
+                "username": "\u5927\u79be",
+                "come_from": "\u6d59\u6c5f \u676d\u5dde"
+            }, {
+                "id": "5351338",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353602",
+                "msg_type": "text",
+                "content": "Gahsjsj",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901793",
+                "on_wall_time": "2015-05-02 22:24:45",
+                "mp_add_time": "2015-05-02 22:24:45",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 22:24:45",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/ajNVdqHZLLBtQRETIllK6XLP7x0c082pjnXwT0ITWVGHv24wwelGdI2wth3iaiadbo30rIJ3CGGoibx29QT04oMjg\/0",
+                "username": "Aka-Tequila",
+                "come_from": "\u6c5f\u82cf \u5357\u4eac"
+            }, {
+                "id": "5351347",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353602",
+                "msg_type": "text",
+                "content": "\u4e0a\u5899",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901815",
+                "on_wall_time": "2015-05-02 22:25:27",
+                "mp_add_time": "2015-05-02 22:25:27",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 22:25:27",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/ajNVdqHZLLBtQRETIllK6XLP7x0c082pjnXwT0ITWVGHv24wwelGdI2wth3iaiadbo30rIJ3CGGoibx29QT04oMjg\/0",
+                "username": "Aka-Tequila",
+                "come_from": "\u6c5f\u82cf \u5357\u4eac"
+            }, {
+                "id": "5351353",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353602",
+                "msg_type": "text",
+                "content": "\u4f60\u597d",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901828",
+                "on_wall_time": "2015-05-02 22:25:49",
+                "mp_add_time": "2015-05-02 22:25:49",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 22:25:49",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/ajNVdqHZLLBtQRETIllK6XLP7x0c082pjnXwT0ITWVGHv24wwelGdI2wth3iaiadbo30rIJ3CGGoibx29QT04oMjg\/0",
+                "username": "Aka-Tequila",
+                "come_from": "\u6c5f\u82cf \u5357\u4eac"
+            }, {
+                "id": "5351356",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353602",
+                "msg_type": "text",
+                "content": "\u4f60\u5728\u54ea",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901834",
+                "on_wall_time": "2015-05-02 22:26:03",
+                "mp_add_time": "2015-05-02 22:26:03",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 22:26:03",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/ajNVdqHZLLBtQRETIllK6XLP7x0c082pjnXwT0ITWVGHv24wwelGdI2wth3iaiadbo30rIJ3CGGoibx29QT04oMjg\/0",
+                "username": "Aka-Tequila",
+                "come_from": "\u6c5f\u82cf \u5357\u4eac"
+            }, {
+                "id": "5351358",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353602",
+                "msg_type": "text",
+                "content": "\u4f60\u597d\u5417\uff1f",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901838",
+                "on_wall_time": "2015-05-02 22:26:08",
+                "mp_add_time": "2015-05-02 22:26:08",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 22:26:08",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/ajNVdqHZLLBtQRETIllK6XLP7x0c082pjnXwT0ITWVGHv24wwelGdI2wth3iaiadbo30rIJ3CGGoibx29QT04oMjg\/0",
+                "username": "Aka-Tequila",
+                "come_from": "\u6c5f\u82cf \u5357\u4eac"
+            }, {
+                "id": "5351362",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353602",
+                "msg_type": "text",
+                "content": "\u8981\u4e0b\u96e8\u4e86",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901847",
+                "on_wall_time": "2015-05-02 22:26:22",
+                "mp_add_time": "2015-05-02 22:26:22",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 22:26:22",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/ajNVdqHZLLBtQRETIllK6XLP7x0c082pjnXwT0ITWVGHv24wwelGdI2wth3iaiadbo30rIJ3CGGoibx29QT04oMjg\/0",
+                "username": "Aka-Tequila",
+                "come_from": "\u6c5f\u82cf \u5357\u4eac"
+            }, {
+                "id": "5351373",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353602",
+                "msg_type": "text",
+                "content": "shangqiang",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901870",
+                "on_wall_time": "2015-05-02 22:27:19",
+                "mp_add_time": "2015-05-02 22:27:19",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 22:27:19",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/ajNVdqHZLLBtQRETIllK6XLP7x0c082pjnXwT0ITWVGHv24wwelGdI2wth3iaiadbo30rIJ3CGGoibx29QT04oMjg\/0",
+                "username": "Aka-Tequila",
+                "come_from": "\u6c5f\u82cf \u5357\u4eac"
+            }, {
+                "id": "5351375",
+                "mp_message_id": "0",
+                "company_id": "101039",
+                "user_id": "1353602",
+                "msg_type": "text",
+                "content": "\u4e0a\u5899",
+                "photo": "",
+                "is_on_wall": "1",
+                "is_presenter": "0",
+                "update_time_ms": "144192289918901874",
+                "on_wall_time": "2015-05-02 22:27:24",
+                "mp_add_time": "2015-05-02 22:27:24",
+                "message_from": "weixin",
+                "is_back_show": "1",
+                "add_time": "2015-05-02 22:27:24",
+                "avatar": "http:\/\/wx.qlogo.cn\/mmopen\/ajNVdqHZLLBtQRETIllK6XLP7x0c082pjnXwT0ITWVGHv24wwelGdI2wth3iaiadbo30rIJ3CGGoibx29QT04oMjg\/0",
+                "username": "Aka-Tequila",
+                "come_from": "\u6c5f\u82cf \u5357\u4eac"
+            }],
+            // 消息总数
+            5,
+            0);
+
+    // v6主题自适应
+    wxscreen.autoSizeTheme();
+    // logo自适应
+    wxscreen.autoCenterLogo();
+    // 监听网络
+    wxscreen.initNetworkState();
+
+    //头部文字切换
+    $(".wordList li").soChange({
+        slideTime: 500,
+        changeTime: 10000
+    });
+
+    //头部文字切换
+    $(".checkinWordList li").soChange({
+        slideTime: 500,
+        changeTime: 10000
+    });
+
+    //关闭浮层
+    $('.layerCloseBtn').click(function () {
+        wxscreen.setState('message');
+    });
+    //});
+</script>
+<script>
+    $(function () {
+
+        // 初始化气泡提示
+        $('.tooltip').tooltipster({theme: 'tooltipster-shadow', trigger: 'hover', delay: 0, speed: 200});
+
+
+    });
+</script>
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcbc479ac4119d55c0b8a663cd1ccbdec' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

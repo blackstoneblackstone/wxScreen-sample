@@ -1,0 +1,32 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕新春之富贵年版
+ *Date       ：2014.1.7
+ *Author     ：lij
+**/
+#wrap{ background:#030b22 url(../images/v6_rich_year/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li{ border:1px solid #fff; background:#fff; border-radius:0;}
+.head{ border-radius:50%; overflow:hidden;}
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#fff; margin-left:5px;}
+
+.und-btn a,.btn-color,.btn-start{border:1px solid #4b9de1; border-color:#c51313 #ad0202 #901010 #ad0202; box-shadow:inset 1px 1px 1px rgba(234,182,182,1); border-radius:4px; background:-moz-linear-gradient(top , #d70202, #9e0404); background: -webkit-linear-gradient(top , #d70202, #9e0404); background:-o-linear-gradient(top , #d70202, #9e0404);}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ background:-moz-linear-gradient(top , #e62929, #b70e0e); background:-webkit-linear-gradient(top , #e62929, #b70e0e);background:-o-linear-gradient(top , #e62929, #b70e0e);}
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:none;/* background:rgba(12,39,69,.8);*/ /*border:1px solid #f0c8c9;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #b40101 ,#9b0101); background:-moz-linear-gradient(top , #b40101 ,#9b0101); background:-o-linear-gradient(top , #b40101 ,#9b0101); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+.pair-wt,.lott-wt{ text-shadow:none;}
+
+/*-------详情显示------*/
+.detail-box{ border:1px solid #fff;}
+.detail-bar{  border:none; background:#fff; border-radius:0;}
+.detail-top{ border-bottom:1px solid #b41418;}
+
+/*--字体颜色--*/
+.tips2,.user-name-detail,.detail-bar,.cont-box,.user-name,.cont-box a{ color:#bb233a;}

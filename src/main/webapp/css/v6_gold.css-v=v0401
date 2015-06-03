@@ -1,0 +1,36 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕土豪金版
+ *Date       ：2013.12.25
+ *Author     ：lij
+**/
+#wrap{ background:#030b22 url(../images/v6_gold/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li{ border:1px solid #ab790c; background:#fff; border-radius:0;}
+.head{ border-radius:50%; overflow:hidden;}
+/*.elem{ position:absolute; top:-25px; left:-25px; width:107px; height:76px; background:url(../images/v6_gold/hat.gif) 0 0 no-repeat;}*/
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#fff; margin-left:5px;}
+
+.und-btn a,.btn-color,.btn-start{border:1px solid #4b9de1; border-color:#dec98f #c4a15d #af8033 #c29e59; box-shadow:inset 1px 1px 1px rgba(234,182,182,1); border-radius:4px; background:-moz-linear-gradient(top , #cca83f, #a67415); background: -webkit-linear-gradient(top , #cca83f, #a67415); background:-o-linear-gradient(top , #cca83f, #a67415);}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ border:1px solid #4b9de1; border-color:#dec98f #c4a15d #af8033 #c29e59; background:-moz-linear-gradient(top , #ddba54, #b27e1d); background:-webkit-linear-gradient(top , #ddba54, #b27e1d);background:-o-linear-gradient(top , #ddba54, #b27e1d); box-shadow:0 0 5px rgba(255,255,153,1);}
+
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:none;/* background:rgba(12,39,69,.8);*/ /*border:1px solid #f0c8c9;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #c9a53a ,#735613); background:-moz-linear-gradient(top , #c9a53a ,#735613); background:-o-linear-gradient(top , #c9a53a ,#735613); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+/*.lottery-box{ box-shadow:none; background:none; border:none;}*/
+.box-ltop,.rock-name{ color:#734804;}
+.pair-wt,.lott-wt{ text-shadow:none;}
+
+/*-------详情显示------*/
+.detail-box{ border:1px solid #f0c8c9;}
+.detail-bar{  border:none; background:#fff; border-radius:0;}
+.detail-top{ border-bottom:1px solid #8cafc9;}
+
+/*--字体颜色--*/
+.tips2,.user-name-detail,.detail-bar,.cont-box,.user-name,.cont-box a{ color:#c27d11;}

@@ -1,0 +1,29 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕星空版
+ *Date       ：2013.11.26
+ *Author     ：lij
+**/
+#wrap{ background:#030b22 url(../images/v6_space/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li{ border:1px solid #237f7e; background:#fff; background: -moz-linear-gradient(250deg, #eef4fd , #fdfefc 25%); background: -webkit-linear-gradient(250deg, #eef4fd , #fdfefc 25%); background: -o-linear-gradient(250deg, #eef4fd , #fdfefc 25%);}
+.cont-box,.user-name,.cont-box a{ color:#124f8a;}
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#fff; border:1px solid #4b9de1; border-color:#0a436c #082b4b #06142c #082b4b; box-shadow:inset 1px 1px 1px rgba(89,142,211,1); border-radius:4px; background:-moz-linear-gradient(top , #103383, #081d61); background:-webkit-linear-gradient(top , #103383, #081d61);background:-o-linear-gradient(top , #103383, #081d61); margin-left:5px;}
+.und-btn a:hover{ border-color:#286592c #082e4f #06142c #286592; background:-moz-linear-gradient(top , #1d45a2, #0d2881); background:-webkit-linear-gradient(top , #1d45a2, #0d2881);background:-o-linear-gradient(top , #1d45a2, #0d2881);}
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:0 0 10px #8fb6ff;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #002051 ,#012d45); background:-moz-linear-gradient(top , #002051 ,#012d45); background:-o-linear-gradient(top , #002051 ,#012d45); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+.btn-color,.btn-start{border:1px solid #4b9de1; border-color:#0a436c #082b4b #06142c #082b4b; box-shadow:inset 1px 1px 1px rgba(89,142,211,1); border-radius:4px; background:-moz-linear-gradient(top , #103383, #081d61); background:-webkit-linear-gradient(top , #103383, #081d61);background:-o-linear-gradient(top , #103383, #081d61);}
+.btn-color:hover,.btn-start:hover{ border-color:#286592c #082e4f #06142c #286592; background:-moz-linear-gradient(top , #1d45a2, #0d2881); background:-webkit-linear-gradient(top , #1d45a2, #0d2881);background:-o-linear-gradient(top , #1d45a2, #0d2881);}
+
+/*-------详情显示------*/
+.detail-box{ border:1px solid #237f7e;}
+.detail-bar{ background:#fff; background:-moz-linear-gradient(250deg, #eef4fd , #fdfefc 25%); background: -webkit-linear-gradient(250deg, #eef4fd , #fdfefc 25%); background: -o-linear-gradient(250deg, #eef4fd , #fdfefc 25%); color:#124f8a;}
+.detail-top{ border-bottom:1px solid #8cafc9;}
+.user-name-detail{ color:#124f8a;}

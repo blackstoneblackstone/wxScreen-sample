@@ -1,0 +1,38 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕之羊年春节
+ *Date       ：2015.01.16
+ *Author     ：lij
+**/
+#wrap{ background:#f00 url(../images/v6_sheep1/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li,.detail-box{ border:1px solid #fff; background: rgba(255,255,255,1)  url(../images/v6_sheep1/bar-ele.png) right bottom no-repeat; border-radius:0;}
+.userimg{ padding:4px; width:94px; height:94px; border-radius:50%; overflow:hidden; border:1px solid #ff2222;}
+.head{ border-radius:50%; overflow:hidden;}
+.elem{ position:absolute; top:65px; left:18px; width:89px; height:37px; background:url(../images/v6_sheep1/hat.png) 0 0 no-repeat; }
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#ed2947; margin-left:5px;}
+
+.und-btn a,.btn-color,.btn-start{ border:1px solid #ffd52c; border-radius:4px; background:-moz-linear-gradient(top , #fff76d, #ffcf1e); background: -webkit-linear-gradient(top , #fff76d, #ffcf1e); background:-o-linear-gradient(top , #fff76d, #ffcf1e); color:#ed2947;}
+.btn-rock a{ color:#ed2947;}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ border:1px solid #ffd52c; background:-moz-linear-gradient(top , #fef785, #ffd332); background:-webkit-linear-gradient(top , #fef785, #ffd332);background:-o-linear-gradient(top , #fef785, #ffd332); box-shadow:0 0 5px rgba(255,255,153,1);}
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:none;/* background:rgba(12,39,69,.8);*/ /*border:1px solid #f0c8c9;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ -webkit-linear-gradient(top , #820f0f ,#510000); background:-moz-linear-gradient(top , #820f0f ,#510000); background:-o-linear-gradient(top , #820f0f ,#510000); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+.pair-wt,.lott-wt{ text-shadow:none;}
+
+/*-------详情显示------*/
+/*.detail-box{ border:1px solid #fd99b8; background: rgba(255,255,255,.7);}*/
+.detail-bar{  border:none; border-radius:0;}
+.detail-top{ border-bottom:1px solid #110f15;}
+
+/*--字体颜色--*/
+.tips2{ color:#bb233a;}
+.user-name,.cont-box a,.cont-box,.user-name-detail,.detail-bar{ color:#fff; color:#f00;}
+
+/*--底部按钮(默认色)--*/

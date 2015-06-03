@@ -1,0 +1,108 @@
+@charset "utf-8";
+/**
+ *Description：微信大屏幕之情人节版
+ *Date       ：2014.2.8
+ *Author     ：lij
+**/
+#wrap{ background:#030b22 url(../images/v6_love_romantic/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.word-scroll{ color:#fa3072;}
+.user-list li{ border:1px solid #ff9dbe; background:#fff; border-radius:0;}
+.head{/* border-radius:50%; overflow:hidden;*/}
+.elem{ position:absolute; left:-26px; top:2px; display:inline-block; width:24px; height:91px; background:url(../images/v6_love_romantic/hat.gif) 0 0 no-repeat;}
+.elem2{ position:absolute; left:-3px; top:2px; display:inline-block; width:100px; height:94px; background:url(../images/v6_love_romantic/elem2.png) 0 0 no-repeat;}
+
+.btn-icon{ background: url(../images/v6_love_romantic/icons.png) no-repeat;}
+.btn-func{ background:url(../images/v6_love_romantic/btns.png) no-repeat;}
+.btn-wifi{ background-position:-40px 0;}
+.btn-shake{ background-position:0 -360px;}
+.btn-style{ background-position:0 -320px;}
+.btn-checkin{ background-position:0 -280px;}
+.btn-tag{ background-position:0 -240px;}
+.btn-vote{ background-position:0 -200px;}
+.btn-pair{ background-position:0 -160px;}
+.btn-lottery{ background-position:0 -120px;}
+.btn-setting{ background-position:0 -80px;}
+.btn-full{ background-position:0 -40px;}
+.btn-old{ background-position:0 0;}
+.btn-prev{ background-position:-50px 0;}
+.btn-begin{ background-position:-198px -40px;}
+.btn-pause{ background-position:-198px 0; opacity:0.8;}
+.btn-next{ background-position:-100px 0; opacity:0.8;}
+.btn-new{ background-position:-150px 0;}
+.btn-shake:hover{ background-position:-40px -360px;}
+.btn-style:hover{ background-position:-40px -320px;}
+.btn-checkin:hover{ background-position:-40px -280px;}
+.btn-tag:hover{ background-position:-40px -240px;}
+.btn-vote:hover{ background-position:-40px -200px;}
+.btn-pair:hover{ background-position:-40px -160px;}
+.btn-lottery:hover{ background-position:-40px -120px;}
+.btn-setting:hover{ background-position:-40px -80px;}
+.btn-full:hover{ background-position:-40px -40px;}
+.btn-old:hover{ background-position:0 -40px;}
+.btn-prev:hover{ background-position:-50px -40px;}
+.btn-begin:hover{ opacity:1;}
+.btn-pause:hover{ opacity:1;}
+.btn-next:hover{ background-position:-100px -40px;}
+.btn-new:hover{ background-position:-150px -40px;}
+.btn-wifi-disable{ background-position:0 0;}
+.btn-shake-disable,.btn-shake-disable:hover{ background-position:-80px -360px;}
+.btn-style-disable,.btn-style-disable:hover{ background-position:-80px -320px;}
+.btn-checkin-disable,.btn-checkin-disable:hover{ background-position:-80px -280px;}
+.btn-tag-disable,.btn-tag-disable:hover{ background-position:-80px -240px;}
+.btn-vote-disable,.btn-vote-disable:hover{ background-position:-80px -200px;}
+.btn-pair-disable,.btn-pair-disable:hover{ background-position:-80px -160px;}
+.btn-lottery-disable,.btn-lottery-disable:hover{ background-position:-80px -120px;}
+
+.btn-danmu{ background-position:-40px -400px;}
+.btn-danmu:hover{ background-position:0 -400px;}
+.btn-danmu-disable,.btn-danmu-disable:hover{background-position:-80px -400px;}
+.btn-laohuji{ background-position:-40px -440px;}
+.btn-laohuji:hover{ background-position:0 -440px;}
+.btn-laohuji-disable,.btn-laohuji-disable:hover{background-position:-80px -440px;}
+.btn-pingfen{ background-position:0 -480px;}
+.btn-pingfen:hover{ background-position:-40px -480px;}
+.btn-pingfen-disable,.btn-pingfen-disable:hover{background-position:-80px -480px;}
+.btn-shang{ background-position:0 -520px;}
+.btn-shang:hover{ background-position:-40px -520px;}
+.btn-shang-disable,.btn-shang-disable:hover{background-position:-80px -520px;}
+.btn-turntable{ background-position:0 -560px;}
+.btn-turntable:hover{ background-position:-40px -560px;}
+.btn-turntable-disable,.btn-turntable-disable:hover{background-position:-80px -560px;}
+
+
+
+
+
+
+
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#fff; margin-left:5px;}
+
+.und-btn a,.btn-color,.btn-start{border:1px solid #f14a82; border-radius:4px; background:-moz-linear-gradient(top , #ff82ac, #f86093); background: -webkit-linear-gradient(top , #ff82ac, #f86093); background:-o-linear-gradient(top , #ff82ac, #f86093);}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ background:-moz-linear-gradient(top , #fd709f, #f44781); background:-webkit-linear-gradient(top , #fd709f, #f44781);background:-o-linear-gradient(top , #fd709f, #f44781);}
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:none;/* background:rgba(12,39,69,.8);*/ /*border:1px solid #f0c8c9;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #f14d81 ,#f29397); background:-moz-linear-gradient(top , #f14d81 ,#f29397); background:-o-linear-gradient(top , #f14d81 ,#f29397); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+.pair-wt,.lott-wt{ text-shadow:none;}
+
+/*-------详情显示------*/
+.detail-box{ border:1px solid #ff9dbe;}
+.detail-bar{  border:none; background:#fff; border-radius:0;}
+.detail-top{ border-bottom:1px solid #fa3072;}
+
+/*--字体颜色--*/
+.tips2,.user-name-detail,.detail-bar,.cont-box,.user-name,.box-ltop,.rock-name,.cont-box a{ color:#fa3072;}
+
+/*--互动阳光logo--*/
+.logo-sun{ background:url(../images/v6_love_romantic/logo_v6_bottom.png) 0 0 no-repeat;}
+
+/*--底部按钮--*/
+.inner-hide-bottom,.semi-circle{ background:#f14a82; border-color:#f35e90;}
+.btn-control .packup i{ display:inline-block; width:0; height:0; font-size:0; border:10px dashed transparent; margin-top:11px; border-top: 10px solid #f4c2d3;}
+.btn-control .unfold i{ display:inline-block; width:0; height:0; font-size:0; border:10px dashed transparent; margin-top:0; border-bottom: 10px solid #f4c2d3;}

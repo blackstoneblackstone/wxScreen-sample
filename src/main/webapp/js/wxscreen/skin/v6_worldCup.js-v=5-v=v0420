@@ -1,0 +1,95 @@
+/**
+ * 球队切换
+ */
+;(function(){
+
+  var iconList = {
+      '阿根廷': '/images/v6_worldCup/qiudui-agenting.png',
+      '巴西':  '/images/v6_worldCup/qiudui-baxi.png',
+      '比利时': '/images/v6_worldCup/qiudui-bilishi.png',
+      '德国': '/images/v6_worldCup/qiudui-deguo.png',
+      '法国': '/images/v6_worldCup/qiudui-faguo.png',
+      '哥伦比亚':   '/images/v6_worldCup/qiudui-gelunbiya.png',
+      '哥斯达黎加':  '/images/v6_worldCup/qiudui-gesidalijia.png',
+      '荷兰': '/images/v6_worldCup/qiudui-helan.png'
+  };
+
+  // 储存的
+  var store = new wxscreen.Storage('storage', 'worldCup-qd-' + wxscreen.getConf('companyId'));
+
+
+  /**
+   * 是否支持过球队
+   * @param  {[type]}  userId [description]
+   * @return {Boolean}        [description]
+   */
+  function getIcon(userId, content)
+  {
+    var qd = parseContent(content);
+    if(!qd) {
+      qd = store.get(userId);
+    } else {
+      // 设置新的球队
+      store.set(userId, qd);
+    }
+    if(qd) {
+      return iconList[qd];
+    }
+    return '';
+  }
+
+  /**
+   * 获取文本里面的球队名字
+   */
+  function parseContent(content)
+  {
+    if(!content) return '';
+    for(var i in iconList) {
+      if(content.indexOf(i) != -1) {
+        return i;
+      }
+    }
+    return '';
+  }
+
+  /**
+   * 添加球队帽子
+   * [worldCupIconFn description]
+   * @return {[type]} [description]
+   */
+  function worldCupIconFn (){
+    var list = $('#container .scrollBox .user-list li');
+    $.each(list, function(){
+      var msgId   = $(this).attr('data-id');
+      var msgInfo = wxscreen.message.info(msgId);
+      // 跳过
+      if(!msgInfo) return true;
+      var content = msgInfo.msg_type == 'text' ? msgInfo.content : '';
+      var userId  = msgInfo.user_id;
+      var icon    = getIcon(userId, content);
+      if(icon) {
+        var uNameBox = $(this).find('.msgUserName');
+        uNameBox.css('margin-left', '42px');
+        $(this).find('.c-word').after('<img class="flag worldCupIcon" style="opacity:0;" src="'+icon+'" width="57" height="93" alt="">');
+        $(this).find('.worldCupIcon').css('scale', 0).transition({
+          opacity: 1,
+          scale: 1
+        });
+        uNameBox.transition({
+          'margin-left': 42
+        });
+      }
+    })
+  }
+
+  // 监听事件
+  wxscreen.sub('message.afterScrollEnd', function(){
+    worldCupIconFn();
+  });
+
+  // 页面加载默认
+//  wxscreen.subOnce('message.loadComplete', function(){
+//    worldCupIconFn();
+//  });
+
+})();

@@ -1,0 +1,35 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕之情人节版
+ *Date       ：2014.2.10
+ *Author     ：lij
+**/
+#wrap{ background:#030b22 url(../images/v6_love_you/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li{ border:1px solid #0f274b; background:rgba(255,255,255,.8); border-radius:0;}
+.head{ border-radius:50%; overflow:hidden;}
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#ed2947; margin-left:5px;}
+
+.und-btn a,.btn-color,.btn-start{ border:1px solid #ffd52c; border-radius:4px; background:-moz-linear-gradient(top , #fff76d, #ffcf1e); background: -webkit-linear-gradient(top , #fff76d, #ffcf1e); background:-o-linear-gradient(top , #fff76d, #ffcf1e); color:#ed2947;}
+.btn-rock a{ color:#ed2947;}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ border:1px solid #ffd52c; background:-moz-linear-gradient(top , #fef785, #ffd332); background:-webkit-linear-gradient(top , #fef785, #ffd332);background:-o-linear-gradient(top , #fef785, #ffd332); box-shadow:0 0 5px rgba(255,255,153,1);}
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:none;/* background:rgba(12,39,69,.8);*/ /*border:1px solid #f0c8c9;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #a32b3e ,#b53e51); background:-moz-linear-gradient(top , #a32b3e ,#b53e51); background:-o-linear-gradient(top , #a32b3e ,#b53e51); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+.pair-wt,.lott-wt{ text-shadow:none;}
+
+/*-------详情显示------*/
+.detail-box{ border:1px solid #0f274b;}
+.detail-bar{  border:none; background:#fff; border-radius:0;}
+.detail-top{ border-bottom:1px solid #520b1c;}
+
+/*--字体颜色--*/
+.tips2,.user-name-detail,.detail-bar,.cont-box,.user-name,.cont-box a{ color:#632441;}
+
+/*--底部按钮(默认色)--*/

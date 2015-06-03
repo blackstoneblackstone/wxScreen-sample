@@ -1,0 +1,38 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕圣诞铃铛版-素雅
+ *Date       ：2013.12.19
+ *Author     ：lij
+**/
+#wrap{ background:#030b22 url(../images/v6_christmas_bell_blue/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li{ border:1px solid #298583; background:-webkit-linear-gradient(245deg, rgba(255,255,255,.8) 30%, rgba(255,255,255,0.7) 25%); border-radius:0;}
+
+.head{ border-radius:50%; overflow:hidden;}
+.elem{ position:absolute; top:-21px; left:-27px; width:84px; height:46px; background:url(../images/v6_christmas_bell_blue/chr_hat.png) 0 0 no-repeat;}
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#fff;  margin-left:5px;}
+/*{ border-color:#286592c #082e4f #06142c #286592; background:-moz-linear-gradient(top , #1d45a2, #0d2881); background:-webkit-linear-gradient(top , #1d45a2, #0d2881);background:-o-linear-gradient(top , #1d45a2, #0d2881);}
+*/
+.und-btn a,.btn-color,.btn-start{border:1px solid #4b9de1; border-color:#1fc3c3 #228682 #136562 #47a5a1; box-shadow:inset 1px 1px 1px rgba(82,217,217,1); border-radius:4px; background:-moz-linear-gradient(top , #21a39d, #165d5a); background:-webkit-linear-gradient(top , #21a39d, #165d5a);background:-o-linear-gradient(top , #21a39d, #165d5a);}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ background:-moz-linear-gradient(top ,#32b0ab, #106f6b); background:-webkit-linear-gradient(top ,#32b0ab, #106f6b);background:-o-linear-gradient(top ,#32b0ab, #106f6b);}
+
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:none;/* background:rgba(12,39,69,.8);*/ /*border:1px solid #298583;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #055b57 ,#033533); background:-moz-linear-gradient(top , #055b57 ,#033533); background:-o-linear-gradient(top , #055b57 ,#033533); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+
+
+/*-------详情显示------*/
+.detail-box{ border:1px solid #298583;}
+.detail-bar{  border:none; background:white/*rgba(255,255,255,.8)*/; border-radius:0;}
+.detail-top{ border-bottom:1px solid #8cafc9;}
+.user-name-detail{ color:#2a9792;}
+
+
+/*--字体颜色--*/
+.tips2,.user-name-detail,.detail-bar,.cont-box,.user-name,.cont-box a{ color:#2a9792;}

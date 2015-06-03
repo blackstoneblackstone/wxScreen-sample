@@ -1,0 +1,96 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕之七夕
+ *Date       ：2014.07.29
+ *Author     ：lij
+**/
+#wrap{ background:#fff url(../images/v6_xixi2014/bg.jpg) center 0 no-repeat;}
+.wrapbg:after { background:none;}
+
+.user-list li,.detail-box{ border:1px solid #120f14; background: rgba(255,255,255,.9); border-radius:0;}
+.head{ border-radius:50%; overflow:hidden;}
+.elem{ position:absolute; top:65px; left:18px; width:89px; height:37px; background:url(../images/v6_xixi2014/hat.png) 0 0 no-repeat; }
+
+.und-btn a{ display:inline-block; width:79px; height:33px; line-height:33px; text-align:center; color:#ed2947; margin-left:5px;}
+
+.und-btn a,.btn-color,.btn-start{ border:1px solid #ffd52c; border-radius:4px; background:-moz-linear-gradient(top , #fff76d, #ffcf1e); background: -webkit-linear-gradient(top , #fff76d, #ffcf1e); background:-o-linear-gradient(top , #fff76d, #ffcf1e); color:#ed2947;}
+.btn-rock a{ color:#ed2947;}
+.und-btn a:hover,.btn-color:hover,.btn-start:hover{ border:1px solid #ffd52c; background:-moz-linear-gradient(top , #fef785, #ffd332); background:-webkit-linear-gradient(top , #fef785, #ffd332);background:-o-linear-gradient(top , #fef785, #ffd332); box-shadow:0 0 5px rgba(255,255,153,1);}
+
+/*---二维码浮层---*/
+.fl-inner{ box-shadow:none;/* background:rgba(12,39,69,.8);*/ /*border:1px solid #f0c8c9;*/ border-radius:0;}
+
+/*----现场抽奖----*/
+.fl-bg{ background:none; z-index:-1;}
+.props-color{ background:-webkit-linear-gradient(top , #0c2745 ,#071728); background:-moz-linear-gradient(top , #0c2745 ,#071728); background:-o-linear-gradient(top , #0c2745 ,#071728); box-shadow: inset -1px 1px rgba(204,204,204,.2)}
+.pair-wt,.lott-wt{ text-shadow:none;}
+
+/*-------详情显示------*/
+/*.detail-box{ border:1px solid #fd99b8; background: rgba(255,255,255,.7);}*/
+.detail-bar{  border:none; border-radius:0;}
+.detail-top{ border-bottom:1px solid #110f15;}
+
+/*--字体颜色--*/
+.tips2{ color:#bb233a;}
+.user-name,.cont-box a,.cont-box,.user-name-detail,.detail-bar{ color:#fff;}
+
+/*--底部按钮(默认色)--*/
+
+
+
+/*--消息展示墙(签到)--*/
+.xixi-pop{ position:absolute; left:15px; top:125px; width:100%;}
+.xixi-heart{ width:630px; margin:0 auto;}
+.xixi-list{ position:relative;}
+.xixi-list li{ position:absolute; width:63px; height:63px; border:2px solid #fff; border-radius:3px;}
+.xixi-list li img{ width:100%; height:100%;}
+
+.li1{ top:496px; left:281px;}
+.li2{ top:426px; left:204px;}
+.li3{ top:358px; left:137px;}
+.li4{ top:291px; left:70px;}
+.li5{ top:223px; left:0;}
+.li6{ top:146px; left:0;}
+.li7{ top:69px; left:0;}
+.li8{ top:0; left:70px;}
+.li9{ top:0; left:146px;}
+.li10{ top:69px; left:215px;}
+.li11{ top:137px; left:281px;}
+.li12{ top:69px; left:347px;}
+.li13{ top:0; left:415px;}
+.li14{ top:0; left:491px;}
+.li15{ top:69px; left:559px;}
+.li16{ top:146px; left:559px;}
+.li17{ top:223px; left:559px;}
+.li18{ top:291px; left:492px;}
+.li19{ top:358px; left:425px;}
+.li20{ top:426px; left:357px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cki-default{opacity:.6;}
+
+/* 点击头像放大的 */
+.xixi2014-img-detail { width:100%;height:100%;opacity:1; }
+.xixi2014-msg-detail { opacity:1;width: 1022px;height: 766px;margin: 0 auto;top: 0; }
+/* .xixi2014-msg-detail .detail-top { border-color:white; } */
+.xixi2014-msg-detail .msg-detail-list { width:100%; height:100%; }
+/*
+.xixi2014-msg-detail { background: white !important; opacity: 1 !important; }*/
+.xixi2014-msg-detail .user-name, .xixi2014-msg-detail .cont-box a, .xixi2014-msg-detail .cont-box, .xixi2014-msg-detail .user-name-detail, .xixi2014-msg-detail .detail-bar{ color:#003d96;}
+.xixi2014-msg-detail .detail-bar { width:982px; height:726px; }
+
+

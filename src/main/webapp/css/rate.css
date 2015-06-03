@@ -1,0 +1,123 @@
+@charset "utf-8";
+/** 
+ *Description：微信大屏幕之打分
+ *Date       ：20140.8.04
+ *Author     ：lij
+**/
+.pop-rate{ position:absolute; top:130px; left:0px; width:910px; height:550px; background:rgba(255,255,255,.9);}
+.inner-pop-rate{ padding:15px 25px 0;}
+.rate-top{ border-bottom:6px solid #e6e6e6; padding-bottom:12px;}
+.txt-right{ text-align:right;}
+.msg-rate{ color:#707070; font-size:22px; padding-bottom:10px;}
+.msg-rate em{ color:#ff6138;}
+.btn-rate{ display:inline-block; width:115px; height:36px; line-height:36px; text-align:center; background:#ff9138; border-radius:3px; font-size:18px; color:#fff;}
+.btn-rate-finish{ background:#ff6138;}
+.btn-rate-review{ background:#e81717;}
+.btn-rate:hover{ opacity:.9;}
+.rate-tit{ color:#4b4b4b; font-size:30px; height:50px; line-height:42px;}
+.msg-rate2{ color:#757474; font-size:18px;}
+.msg-rate2 em{ color:#ff6138;}
+.rate-center{}
+
+/*--评分--*/
+.ratebox{ position:relative; }
+.inner-ratebox{ width:782px; overflow:hidden; margin:0 auto;}
+.rate-list{}
+.rate-list li{ float:left; width:781px; height:440px;}
+.rate-list dl{}
+.rate-list dt{ padding:15px 0;}
+.avatar{ width:128px; height:128px; border:1px solid #d9d9d9;}
+.avatar img{ width:100%; height:100%;}
+.intro{ position:relative; margin-left:150px; font-size:18px;}
+.part-tit{ font-size:30px; color:#1b1b1b;}
+.msg-rate3{ color:#434343; height:36px; line-height:36px;}
+.msg-rate4{ color:#757474; line-height:25px;}
+.rate-list dd{ position:relative; float:left; width:342px; height:86px; padding:20px; border:1px solid #e4e4e5; line-height:80px; background:#fcfcfd; color:#484848; font-size:24px; margin:0 12px 12px 0;}
+.rate-list dd:nth-child(2n+1){ margin-right:0;}
+.prev-rate,.next-rate{ position:absolute; top:180px; display:block; width:27px; height:75px; background:url(../images/rate/arrow.png) no-repeat 0 0;}
+.prev-rate{ left:-10px; background-position:0 0;}
+.next-rate{ right:-10px; background-position:right 0;}
+.prev-rate.disabled{ background-position:0 bottom;}
+.next-rate.disabled{ background-position:right bottom;}
+.msg-rate5{ color:#323232; font-size:30px; text-align:center; padding:130px 0 30px; line-height:30px;}
+.btn-wrap2{ text-align:center;}
+.btn-result{ display:inline-block; width:180px; height:56px; background:#ff9138; text-align:center; line-height:56px; border-radius:3px; color:#fff; font-size:26px;}
+
+/*--loading--*/
+.ratebox .loadingbox { text-align:center; position:relative; top:225px; }
+
+/*--评分进度--*/
+.score-show{ position:absolute; top:17px; right:15px; width:92px; height:92px; overflow:hidden;}
+.pie { width:92px; height:92px; background:#ffd584; border-radius:50%; position:absolute; }
+.pie1 { clip:rect(0px,92px,92px,46px); -o-transform:rotate(0deg); -moz-transform:rotate(0deg); -webkit-transform:rotate(0deg);}
+.pie2 { clip:rect(0px,46px,92px,0px); -o-transform:rotate(0deg); -moz-transform:rotate(0deg); -webkit-transform:rotate(0deg); }
+.hold { width:92px; height:92px; position:absolute; z-index:1; }
+.hold1 { clip:rect(0px,92px,92px,46px); }
+.hold2 { clip:rect(0px,46px,92px,0px); }
+.score-show .bg { width:92px; height:92px; background:#e4e4e4; border-radius:50%; position:absolute;  }
+.score-num { width:80px; height:80px; margin:6px 0 0 6px; background-color:#fff; border-radius:50%; position:absolute; z-index:1; text-align:center; line-height:80px; font-size:35px; color:#ff5400;}
+.score-total{ position:absolute; top:-2px; right:10px; width:136px; height:136px; overflow:hidden;}
+.score-total .pie { width:136px; height:136px; background:#ffd584; }
+.score-total .pie1 { clip:rect(0px,136px,136px,68px);-o-transform:rotate(0deg); -moz-transform:rotate(0deg); -webkit-transform:rotate(0deg);}
+.score-total .pie2 { clip:rect(0px,68px,136px,0px); -o-transform:rotate(0deg); -moz-transform:rotate(0deg); -webkit-transform:rotate(0deg); }
+.score-total .hold { width:136px; height:136px; }
+.score-total .hold1 { clip:rect(0px,136px,136px,68px); }
+.score-total .hold2 { clip:rect(0px,68px,136px,0px); }
+.score-total .bg { width:136px; height:136px; background:#e4e4e4; }
+.score-total .score-num { width:120px; height:120px; margin:8px 0 0 8px; line-height:130px; font-size:48px;}
+.score-total .score-num em{ position:absolute; top:20px; left:40px; height:20px; line-height:20px; color:#707070; font-size:20px;}
+
+/*--结果列表--*/
+.rateresult{ padding-top:15px; width:860px; height:410px; overflow-x:auto;}
+.rateresult table{ /*width:100%;*/}
+.rateresult table tr:first-child{ height:260px;}
+.rateresult td{ vertical-align:bottom; width:70px; padding:0 17px; text-align:center;}
+.score-num2{ font-size:26px; color:#ff6138; height:50px; line-height:50px;}
+.zhu{ position:relative; width:70px;/* margin:0 auto;*/}
+.zhu em{ position:absolute; top:5px; left:0; display:block; width:70px; text-align:center; color:#fff; font-size:16px;}
+.zhu1{ background:#ff6138;}
+.zhu2{ background:#ff7038;}
+.zhu3{ background:#ff9638;}
+.zhu4{ background:#ffa438;}
+.zhu5{ background:#ffa438;}
+.zhu6{ background:#ffb638;}
+.zhu7{ background:#ffd338;}
+.zhu8{ background:#ffd738;}
+.zhu9{ background:#ffe138;}
+.zhu10{ background:#ffe538;}
+.zhu11{ background:#ffea38;}
+.zhu12{ background:#ffef38;}
+.zhu13{ background:#fff338;}
+.zhu14{ background:#fffd38;}
+.zhu15{ background:#f8ff38;}
+.rate-avatar2{ display:block; width:70px; height:70px; margin-top:15px;/* margin:15px auto 0;*/}
+.rate-avatar2 img{ width:100%; height:100%;}
+.rate-name{ text-align:center; height:40px; padding:5px 0; font-size:16px; color:#1b1b1b; overflow:hidden;}
+
+.rate-whole{}
+.inner-rate-whole{ height:400px; margin-top:15px; overflow-y:auto;}
+.rate-whole-list{}
+.rate-whole-list li{ float:left; height:90px; width:418px; border:1px solid #e6e6e6; margin:0 12px 10px 0; overflow:hidden;}
+.rate-whole-list li:nth-child(2n){ margin-right:0;}
+.rate-whole-list li .num{ display:block; width:50px; height:90px; line-height:90px; text-align:center; border-right:1px solid #e6e6e6; color:#ff6138; font-family:Impact; font-size:36px;}
+.rate-whole-list li .avatar2{ display:block; width:70px; height:70px; padding:10px;}
+.rate-whole-list li .avatar2 img{ width:100%; height:100%;}
+.intro2{ width:270px; padding:10px 5px 10px 0;}
+
+.rate-name2{ color:#1b1b1b; padding-bottom:3px; font-size:20px;}
+.msg-rate6{ font-size:14px; color:#757474;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

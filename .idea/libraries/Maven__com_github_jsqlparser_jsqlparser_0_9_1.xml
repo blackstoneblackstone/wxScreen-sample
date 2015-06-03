@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.jsqlparser:jsqlparser:0.9.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/jsqlparser/jsqlparser/0.9.1/jsqlparser-0.9.1.jar!/" />
+    </CLASSES>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/jsqlparser/jsqlparser/0.9.1/jsqlparser-0.9.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
